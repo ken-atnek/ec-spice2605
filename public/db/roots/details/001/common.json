@@ -1,0 +1,12 @@
+{
+  "id": "001",
+  "shopName": "CHEZ Tani",
+  "position": "オーナーシェフ",
+  "name": "谷 誠志",
+  "nameEn": "SEISHI TANI",
+  "pageText": [
+    "熊本市に、甘い香りが漂う洋菓子店があります。1991年に誕生した『CHEZ Tani（シェ・タニ）』は、30年以上にわたり熊本を代表する洋菓子店として親しまれてきました。その味を守り続けているのが、75歳を過ぎた今も毎朝厨房に立つ谷誠志社長です。「お菓子づくりは幸せづくり」。その想いは、一つひとつのお菓子に静かに息づいています。"
+  ],
+  "illustration": "/db/roots/images/001/illustration.png",
+  "onlineShopUrl": "https://example.com/"
+}

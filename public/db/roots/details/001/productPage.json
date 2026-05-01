@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "image": "/db/roots/images/001/product-hero.jpg",
+    "text": ["ひと口で", "幸せになる理由が", "ここにある。"]
+  },
+  "main": {
+    "title": "メインタイトル",
+    "text": ["メインテキストの1段落目です。", "メインテキストの2段落目です。"]
+  },
+  "ecUrl": "https://example.com/",
+  "items": [
+    {
+      "image": "/db/roots/images/001/product-item-01.webp",
+      "title": "商品タイトル01",
+      "textWithImage": [
+        "画像が入ったバージョンのテキスト1段落目です。",
+        "画像が入ったバージョンのテキスト2段落目です。"
+      ]
+    },
+    {
+      "image": "/db/roots/images/001/product-item-02.webp",
+      "title": "商品タイトル02",
+      "textWithImage": [
+        "画像が入ったバージョンのテキスト1段落目です。",
+        "画像が入ったバージョンのテキスト2段落目です。"
+      ]
+    },
+    {
+      "image": "/db/roots/images/001/product-item-03.webp",
+      "title": "商品タイトル03",
+      "textWithImage": [
+        "画像が入ったバージョンのテキスト1段落目です。",
+        "画像が入ったバージョンのテキスト2段落目です。"
+      ]
+    },
+    {
+      "image": "/db/roots/images/001/product-item-04.webp",
+      "title": "商品タイトル04",
+      "textWithImage": [
+        "画像が入ったバージョンのテキスト1段落目です。",
+        "画像が入ったバージョンのテキスト2段落目です。"
+      ]
+    }
+  ],
+  "personStoryImage": "/db/roots/images/001/person-story.webp"
+}

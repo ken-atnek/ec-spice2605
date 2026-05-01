@@ -12,9 +12,11 @@
 ## URL構成
 
 ```txt
-/roots/001/          ← 商品 page
-/roots/001/story/    ← 人物ストーリー page
+/roots/?id=roots_001               ← 商品 page
+/roots/?id=roots_001&page=story    ← 人物ストーリー page
 ```
+
+IDのプレフィックス `roots_` は、将来的に他カテゴリのページと区別するための名前空間。
 
 ---
 
@@ -24,18 +26,16 @@
 src/
 └─ app/
    └─ roots/
-      └─ [id]/
-         ├─ page.tsx
-         └─ story/
-            └─ page.tsx
+      └─ page.tsx    ← 商品・ストーリー両方を1ファイルで管理
 ```
 
-`output: 'export'` 前提のため、`generateStaticParams()` は同期関数で定義する。
+`useSearchParams()` で `id` と `page` を取得し、クライアントサイドで表示を切り替える。
+`generateStaticParams` は不要（IDを追加してもビルド不要）。
 
 ```ts
-export function generateStaticParams() {
-  return [{ id: '001' }];
-}
+const id = searchParams.get('id')           // "roots_001"
+const page = searchParams.get('page')       // "story" | null
+const folderId = id?.replace('roots_', '')  // "001"
 ```
 
 ---
@@ -85,6 +85,8 @@ storyPage.json   → 人物ストーリーpage専用
 - 一覧ページは現時点では作成しない。
 - 将来的に一覧が必要になった場合は `public/db/roots/index.json` を追加する。
 - 1店舗 / 1案件ごとに `001` のような ID フォルダで管理する。
+- URLのidは `roots_001` 形式、JSONフォルダは `001`（`roots_` を除いた部分）で対応する。
+- IDを追加してもビルド不要（クライアントサイドで `useSearchParams` を使うため）。
 - `common.json` と `info.json` は分けて管理する。
 - 店舗名は `common.json` に `shopName` として持たせる。
 - Info欄で店舗名の表記が変わる可能性があるため、`info.json` 側には `infoShopName` を持たせる。
@@ -271,10 +273,10 @@ info.infoShopName   → Info欄で表示する店名
 public/db/roots/images/001/
 ```
 
-JSON内では `/public` を含めず以下のように指定する。
+JSON内では `/public` を含めず以下のように指定する。拡張子は実ファイルに合わせる（`.jpg` / `.webp` など）。
 
 ```json
-"/db/roots/images/001/product-hero.webp"
+"/db/roots/images/001/product-hero.jpg"
 ```
 
 ---
@@ -309,12 +311,23 @@ public/
 
 ## 将来的な拡張
 
-一覧ページが必要になった場合は `public/db/roots/index.json` を追加する。
+### 一覧ページ
+
+URL は `/roots/list/`。SEO的に `/roots/` の配下に置くことで、rootsコンテンツとの関係性をGoogleに伝えやすくする。
+
+```txt
+src/app/roots/
+├── page.tsx        ← 商品・ストーリー（現在）
+└── list/
+    └── page.tsx    ← 一覧ページ（将来）
+```
+
+一覧データは `public/db/roots/index.json` を追加して管理する。
 
 ```json
 [
   {
-    "id": "001",
+    "id": "roots_001",
     "shopName": "店舗名称",
     "thumbnail": "/db/roots/images/001/product-hero.webp",
     "summary": "一覧用の短い紹介文"
