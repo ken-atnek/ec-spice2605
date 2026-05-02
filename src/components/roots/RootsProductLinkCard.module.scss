@@ -1,0 +1,22 @@
+.root {
+  width: min(100%, 390px);
+  margin: 0 auto;
+  padding: 20px 16px 0;
+}
+
+.link {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  border-radius: 16px;
+  background: #f3f3f3;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+}

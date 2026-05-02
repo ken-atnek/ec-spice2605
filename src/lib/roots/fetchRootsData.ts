@@ -12,6 +12,17 @@ export type ProductPageData = {
     image: string;
     text: string[];
   };
+  main: {
+    title: string;
+    text: string[];
+  };
+  ecUrl: string;
+  items: {
+    image: string;
+    title: string;
+    textWithImage: string[];
+  }[];
+  personStoryImage?: string;
 };
 
 export type StoryPageData = {
@@ -19,6 +30,11 @@ export type StoryPageData = {
     image?: string;
     text?: string[];
   };
+  sections?: {
+    image: string;
+    title: string;
+    textWithImage: string[];
+  }[];
 };
 
 export type CommonData = {
@@ -28,6 +44,25 @@ export type CommonData = {
   nameEn: string;
   pageText: string[];
   illustration: string;
+  productLinkImage?: string;
+  commonNotice?: string;
+  onlineShopUrl: string;
+};
+
+export type InfoData = {
+  infoShopName: string;
+  place: string;
+  mapUrl: string;
+  businessHours: string[];
+  tel: string;
+  holiday: string;
+};
+
+export type EventsData = {
+  isVisible?: boolean;
+  image: string;
+  title: string;
+  text: string[];
 };
 
 function fetchJson<T>(path: string): Promise<T> {
@@ -48,4 +83,12 @@ export function fetchCommonData(folderId: string): Promise<CommonData> {
 
 export function fetchStoryPage(folderId: string): Promise<StoryPageData> {
   return fetchJson<StoryPageData>(`/db/roots/details/${folderId}/storyPage.json`);
+}
+
+export function fetchInfoData(folderId: string): Promise<InfoData> {
+  return fetchJson<InfoData>(`/db/roots/details/${folderId}/info.json`);
+}
+
+export function fetchEventsData(folderId: string): Promise<EventsData> {
+  return fetchJson<EventsData>(`/db/roots/details/${folderId}/events.json`);
 }

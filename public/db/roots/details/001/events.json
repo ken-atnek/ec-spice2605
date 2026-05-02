@@ -1,1 +1,6 @@
-{}
+{
+  "isVisible": true,
+  "image": "/db/product/images/001/event.webp",
+  "title": "江津本店がリニューアルオープン！",
+  "text": ["イベントテキストの1段落目です。", "イベントテキストの2段落目です。"]
+}

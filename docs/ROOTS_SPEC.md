@@ -33,9 +33,9 @@ src/
 `generateStaticParams` は不要（IDを追加してもビルド不要）。
 
 ```ts
-const id = searchParams.get('id')           // "roots_001"
-const page = searchParams.get('page')       // "story" | null
-const folderId = id?.replace('roots_', '')  // "001"
+const id = searchParams.get("id"); // "roots_001"
+const page = searchParams.get("page"); // "story" | null
+const folderId = id?.replace("roots_", ""); // "001"
 ```
 
 ---
@@ -140,13 +140,9 @@ Infoエリア専用の情報。
   "infoShopName": "Info欄で表示する店名",
   "place": "熊本県熊本市〇〇〇〇",
   "mapUrl": "https://www.google.com/maps/embed?pb=xxxx",
-  "businessHours": [
-    "10:00〜18:00",
-    "ランチ 11:30〜14:00",
-    "夜営業は予約制"
-  ],
+  "businessHours": ["10:00〜18:00", "ランチ 11:30〜14:00", "夜営業は予約制"],
   "tel": "096-000-0000",
-  "recruit": "スタッフ募集中"
+  "holiday": "月曜日"
 }
 ```
 
@@ -174,10 +170,7 @@ info.infoShopName   → Info欄で表示する店名
   "isVisible": true,
   "image": "/db/roots/images/001/event.webp",
   "title": "イベントタイトル",
-  "text": [
-    "イベントテキストの1段落目です。",
-    "イベントテキストの2段落目です。"
-  ]
+  "text": ["イベントテキストの1段落目です。", "イベントテキストの2段落目です。"]
 }
 ```
 
@@ -195,7 +188,9 @@ info.infoShopName   → Info欄で表示する店名
 表示側。
 
 ```tsx
-{event.isVisible && <EventSection event={event} />}
+{
+  event.isVisible && <EventSection event={event} />;
+}
 ```
 
 ---
@@ -208,17 +203,11 @@ info.infoShopName   → Info欄で表示する店名
 {
   "hero": {
     "image": "/db/roots/images/001/product-hero.webp",
-    "text": [
-      "heroテキストの1行目です。",
-      "heroテキストの2行目です。"
-    ]
+    "text": ["heroテキストの1行目です。", "heroテキストの2行目です。"]
   },
   "main": {
     "title": "メインタイトル",
-    "text": [
-      "メインテキストの1段落目です。",
-      "メインテキストの2段落目です。"
-    ]
+    "text": ["メインテキストの1段落目です。", "メインテキストの2段落目です。"]
   },
   "ecUrl": "https://example.com/",
   "items": [
@@ -245,10 +234,7 @@ info.infoShopName   → Info欄で表示する店名
 {
   "hero": {
     "image": "/db/roots/images/001/story-hero.webp",
-    "text": [
-      "heroテキストの1行目です。",
-      "heroテキストの2行目です。"
-    ]
+    "text": ["heroテキストの1行目です。", "heroテキストの2行目です。"]
   },
   "sections": [
     {

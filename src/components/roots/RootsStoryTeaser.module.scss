@@ -1,0 +1,75 @@
+.root {
+  width: min(100%, 390px);
+  margin: 0 auto;
+  padding: 40px 16px 56px;
+  color: #5a3f2a;
+}
+
+.inner {
+  background: #f1ede6;
+  border: 1px dashed #9b9084;
+  border-radius: 180px;
+  padding: 46px 0 40px;
+  overflow: hidden;
+}
+
+.head {
+  text-align: center;
+  padding: 0 16px;
+}
+
+.titleEn {
+  margin: 0;
+  font-size: 5.2rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+}
+
+.rule {
+  width: 64px;
+  height: 2px;
+  margin: 16px auto;
+  border: 0;
+  background: #7a6755;
+}
+
+.titleJa {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.hero {
+  margin: 28px 16px 0;
+  width: calc(100% - 32px);
+  height: auto;
+  border-radius: 14px;
+  display: block;
+}
+
+.dot {
+  margin: 20px auto;
+  width: 8px;
+  color: #7a6755;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  text-align: center;
+}
+
+.buttonWrap {
+  padding: 0 16px;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  min-height: 72px;
+  border-radius: 999px;
+  background: #db2f2f;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  line-height: 72px;
+  font-size: 2.1rem;
+  letter-spacing: 0.06em;
+}

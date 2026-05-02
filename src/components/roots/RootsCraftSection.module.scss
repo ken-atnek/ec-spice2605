@@ -1,0 +1,98 @@
+.root {
+  width: min(100%, 390px);
+  margin: 0 auto;
+  padding: 40px 16px 0;
+  color: #5a3f2a;
+}
+
+.head {
+  text-align: center;
+}
+
+.titleEn {
+  margin: 0;
+  font-size: 5.2rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+}
+
+.rule {
+  width: 64px;
+  height: 2px;
+  margin: 16px auto;
+  border: 0;
+  background: #7a6755;
+}
+
+.titleJa {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.dot {
+  margin: 18px auto 12px;
+  width: 8px;
+  color: #7a6755;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  text-align: center;
+}
+
+.mainTitle {
+  margin: 0;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+.mainText {
+  margin: 24px 0 0;
+  font-size: 1.9rem;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+}
+
+.mainText + .mainText {
+  margin-top: 1em;
+}
+
+.list {
+  margin-top: 46px;
+}
+
+.item + .item {
+  margin-top: 30px;
+}
+
+.itemNo {
+  margin: 0 0 8px;
+  font-size: 4rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
+.itemImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.itemTitle {
+  margin: 12px 0 0;
+  font-size: 2rem;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+.itemText {
+  margin: 14px 0 0;
+  font-size: 1.8rem;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+}
+
+.itemText + .itemText {
+  margin-top: 0.8em;
+}
