@@ -1,4 +1,14 @@
-.root {
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsNoticeText スタイル
+ * URL: /src/components/roots/RootsNoticeText.module.scss
+ * Referenced in: /src/components/roots/RootsNoticeText.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsNoticeText {
   width: min(100%, 390px);
   margin: 0 auto;
   padding: 12px 16px 28px;

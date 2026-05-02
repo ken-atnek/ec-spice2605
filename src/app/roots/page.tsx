@@ -19,6 +19,7 @@ import RootsFooter from "@/components/roots/RootsFooter";
 import RootsNoticeText from "@/components/roots/RootsNoticeText";
 import RootsStorySectionList from "@/components/roots/RootsStorySectionList";
 import RootsProductLinkCard from "@/components/roots/RootsProductLinkCard";
+import RootsHeaderMenu from "@/components/roots/RootsHeaderMenu";
 import {
   fetchCommonData,
   fetchEventsData,
@@ -41,6 +42,7 @@ function RootsContent() {
   const page = searchParams.get("page"); // "story" | null
   const folderId = id?.replace("roots_", ""); // "001" (JSONフォルダ名)
   const isStoryPage = page === "story";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // ページ種別に応じたJSONデータ
   const [productPage, setProductPage] = useState<ProductPageData | null>(null);
@@ -101,6 +103,12 @@ function RootsContent() {
   const webStoreSection = commonData?.onlineShopUrl ? (
     <RootsWebStoreCta url={commonData.onlineShopUrl} />
   ) : null;
+  const menuItems = [
+    { en: "STORY", ja: "人物ストーリー", href: `/roots?id=roots_${folderId}&page=story#story` },
+    { en: "CRAFT", ja: "商品へのこだわり", href: `/roots?id=roots_${folderId}#craft` },
+    { en: "INFO.", ja: "お店情報", href: `#info` },
+    { en: "EVENT", ja: "イベント", href: `#event` },
+  ];
 
   // --- ストーリーページ ---
   if (isStoryPage) {
@@ -109,13 +117,22 @@ function RootsContent() {
     if (!storyHeroImage || !storyHeroText || !commonData) return null;
     return (
       <>
+        <RootsHeaderMenu
+          isOpen={isMenuOpen}
+          onToggle={() => setIsMenuOpen((prev) => !prev)}
+          onClose={() => setIsMenuOpen(false)}
+          items={menuItems}
+          webStoreUrl={commonData?.onlineShopUrl}
+        />
         <RootsHero
           image={storyHeroImage}
           catchCopy={storyHeroText.join("\n")}
         />
         {commonSection}
         {storyPage?.sections && storyPage.sections.length > 0 ? (
-          <RootsStorySectionList sections={storyPage.sections} />
+          <div id="story">
+            <RootsStorySectionList sections={storyPage.sections} />
+          </div>
         ) : null}
         {commonData.productLinkImage ? (
           <RootsProductLinkCard
@@ -125,21 +142,25 @@ function RootsContent() {
         ) : null}
         {webStoreSection}
         {infoData ? (
-          <RootsInfoSection
-            infoShopName={infoData.infoShopName}
-            place={infoData.place}
-            mapUrl={infoData.mapUrl}
-            businessHours={infoData.businessHours}
-            tel={infoData.tel}
-            holiday={infoData.holiday}
-          />
+          <div id="info">
+            <RootsInfoSection
+              infoShopName={infoData.infoShopName}
+              place={infoData.place}
+              mapUrl={infoData.mapUrl}
+              businessHours={infoData.businessHours}
+              tel={infoData.tel}
+              holiday={infoData.holiday}
+            />
+          </div>
         ) : null}
         {eventsData && eventsData.isVisible !== false ? (
-          <RootsEventSection
-            image={eventsData.image}
-            title={eventsData.title}
-            text={eventsData.text}
-          />
+          <div id="event">
+            <RootsEventSection
+              image={eventsData.image}
+              title={eventsData.title}
+              text={eventsData.text}
+            />
+          </div>
         ) : null}
         {webStoreSection}
         {commonData?.commonNotice ? (
@@ -156,18 +177,27 @@ function RootsContent() {
 
   return (
     <>
+      <RootsHeaderMenu
+        isOpen={isMenuOpen}
+        onToggle={() => setIsMenuOpen((prev) => !prev)}
+        onClose={() => setIsMenuOpen(false)}
+        items={menuItems}
+        webStoreUrl={commonData?.onlineShopUrl}
+      />
       <RootsHero
         image={productPage.hero.image}
         catchCopy={productPage.hero.text.join("\n")}
       />
       {commonSection}
       {webStoreSection}
-      <RootsCraftSection
-        mainTitle={productPage.main.title}
-        mainText={productPage.main.text}
-        ecUrl={productPage.ecUrl}
-        items={productPage.items}
-      />
+      <div id="craft">
+        <RootsCraftSection
+          mainTitle={productPage.main.title}
+          mainText={productPage.main.text}
+          ecUrl={productPage.ecUrl}
+          items={productPage.items}
+        />
+      </div>
       {webStoreSection}
       {productPage.personStoryImage ? (
         <RootsStoryTeaser
@@ -183,21 +213,25 @@ function RootsContent() {
       ) : null}
       {webStoreSection}
       {infoData ? (
-        <RootsInfoSection
-          infoShopName={infoData.infoShopName}
-          place={infoData.place}
-          mapUrl={infoData.mapUrl}
-          businessHours={infoData.businessHours}
-          tel={infoData.tel}
-          holiday={infoData.holiday}
-        />
+        <div id="info">
+          <RootsInfoSection
+            infoShopName={infoData.infoShopName}
+            place={infoData.place}
+            mapUrl={infoData.mapUrl}
+            businessHours={infoData.businessHours}
+            tel={infoData.tel}
+            holiday={infoData.holiday}
+          />
+        </div>
       ) : null}
       {eventsData && eventsData.isVisible !== false ? (
-        <RootsEventSection
-          image={eventsData.image}
-          title={eventsData.title}
-          text={eventsData.text}
-        />
+        <div id="event">
+          <RootsEventSection
+            image={eventsData.image}
+            title={eventsData.title}
+            text={eventsData.text}
+          />
+        </div>
       ) : null}
       {webStoreSection}
       {commonData?.commonNotice ? (

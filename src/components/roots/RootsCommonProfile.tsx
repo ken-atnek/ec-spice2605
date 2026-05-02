@@ -26,7 +26,7 @@ export default function RootsCommonProfile({
   illustration,
 }: Props) {
   return (
-    <section className={styles.root}>
+    <section className={styles.rootsCommonProfile}>
       <div className={styles.head}>
         <div className={styles.meta}>
           <p className={styles.shopName}>{shopName}</p>

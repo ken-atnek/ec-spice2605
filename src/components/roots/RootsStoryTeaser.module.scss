@@ -1,4 +1,14 @@
-.root {
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsStoryTeaser スタイル
+ * URL: /src/components/roots/RootsStoryTeaser.module.scss
+ * Referenced in: /src/components/roots/RootsStoryTeaser.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsStoryTeaser {
   width: min(100%, 390px);
   margin: 0 auto;
   padding: 40px 16px 56px;

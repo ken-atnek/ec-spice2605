@@ -20,7 +20,7 @@ type Props = {
 
 export default function RootsStorySectionList({ sections }: Props) {
   return (
-    <section className={styles.root}>
+    <section className={styles.rootsStorySectionList}>
       {sections.map((section, index) => {
         const no = `#${String(index + 1).padStart(2, "0")}`;
         const isLast = index === sections.length - 1;

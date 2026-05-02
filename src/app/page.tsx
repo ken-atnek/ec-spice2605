@@ -10,9 +10,9 @@ import { isRealProduction } from "@/lib/env";
 
 export const generateMetadata = (): Metadata => {
   return {
-    title: "熊日すぱいす｜熊本県上益城郡益城町の建築工事",
+    title: "よかモノがたり｜熊日すぱいす",
     description: isRealProduction
-      ? "熊本県上益城郡益城町で建築工事、大工工事、屋根工事、タイル・ブロツク工事、内装仕上工事、などの建設工事を行っております。"
+      ? "熊本の暮らしに役立つ情報サイト「くまにち すぱいす」。グルメ、子育て、おでかけなど、地元熊本に28万部配布のフリーペーパーがお届け！"
       : undefined,
   };
 };

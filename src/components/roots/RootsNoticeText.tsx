@@ -13,7 +13,7 @@ type Props = {
 
 export default function RootsNoticeText({ text }: Props) {
   return (
-    <section className={styles.root}>
+    <section className={styles.rootsNoticeText}>
       <p className={styles.text}>{text}</p>
     </section>
   );

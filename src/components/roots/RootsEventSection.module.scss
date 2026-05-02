@@ -1,4 +1,14 @@
-.root {
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsEventSection スタイル
+ * URL: /src/components/roots/RootsEventSection.module.scss
+ * Referenced in: /src/components/roots/RootsEventSection.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsEventSection {
   width: min(100%, 390px);
   margin: 0 auto;
   padding: 40px 16px 56px;
@@ -62,8 +72,7 @@
   color: #cf1f24;
   font-size: 1.9rem;
   line-height: 1.9;
-}
-
-.text + .text {
-  margin-top: 0.8em;
+  & + & {
+    margin-top: 0.8em;
+  }
 }

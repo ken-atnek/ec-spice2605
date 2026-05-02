@@ -16,7 +16,7 @@ type Props = {
 
 export default function RootsProductLinkCard({ href, image }: Props) {
   return (
-    <section className={styles.root}>
+    <section className={styles.rootsProductLinkCard}>
       <Link href={href} className={styles.link}>
         <Image
           src={image}

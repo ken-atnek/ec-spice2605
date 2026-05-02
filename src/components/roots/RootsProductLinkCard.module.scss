@@ -1,4 +1,14 @@
-.root {
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsProductLinkCard スタイル
+ * URL: /src/components/roots/RootsProductLinkCard.module.scss
+ * Referenced in: /src/components/roots/RootsProductLinkCard.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsProductLinkCard {
   width: min(100%, 390px);
   margin: 0 auto;
   padding: 20px 16px 0;
@@ -7,7 +17,6 @@
 .link {
   display: block;
   width: 100%;
-  max-width: 100%;
   padding: 10px;
   border-radius: 16px;
   background: #f3f3f3;

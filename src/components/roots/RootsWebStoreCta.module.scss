@@ -1,47 +1,48 @@
-.root {
-  width: min(100%, 390px);
-  margin: 0 auto;
-  padding: 20px 16px 0;
-}
+@use "../../styles/foundation/" as *;
 
-.link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 136px;
-  padding: 20px 18px;
-  border-radius: 16px;
-  background: #6d4a2b;
-  color: #fff;
-  text-decoration: none;
-}
+/* =======================================
+ * 熊日すぱいす ROOTS RootsWebStoreCta スタイル
+ * URL: /src/components/roots/RootsWebStoreCta.module.scss
+ * Referenced in: /src/components/roots/RootsWebStoreCta.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
 
-.lead {
-  margin: 0;
-  font-size: 1.4rem;
-  line-height: 1.4;
-  letter-spacing: 0.08em;
-}
-
-.title {
-  margin: 8px 0 0;
-  font-size: 4.8rem;
-  line-height: 1;
-  letter-spacing: 0.12em;
-}
-
-.iconWrap {
-  flex-shrink: 0;
-  width: 96px;
-  height: 96px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-}
-
-.icon {
-  width: 48px;
-  height: 48px;
+.rootsWebStoreCta {
+  font-size: inherit;
+  position: relative;
+  padding: 0 $mobile-padding;
+  a {
+    background-color: #634628;
+    font-size: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 2.7rem 2.1rem;
+    & > div {
+      font-size: inherit;
+      display: flex;
+      flex-direction: column;
+      color: $pure-white;
+      gap: 0.5em 0;
+      .lead {
+        font-size: fs-fluid(12);
+        @include serif;
+        letter-spacing: 0.1em;
+      }
+      .title {
+        font-size: fs-fluid(30);
+        line-height: 1;
+        letter-spacing: 0.1em;
+        @include cormorant;
+        font-weight: 600;
+      }
+    }
+    svg {
+      fill: $pure-white;
+      aspect-ratio: 1;
+      width: 7.8rem;
+    }
+  }
 }

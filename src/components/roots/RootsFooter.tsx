@@ -8,7 +8,7 @@
 import styles from "./RootsFooter.module.scss";
 export default function RootsFooter() {
   return (
-    <footer className={styles.root}>
+    <footer className={styles.rootsFooter}>
       <div className={styles.top}>
         <p className={styles.logo}>SPICE</p>
         <div className={styles.line} />

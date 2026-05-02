@@ -2,8 +2,13 @@
  * フォント設定
  * ------------------------------ */
 @mixin sans {
-    font-family: var(--font-jp), "Noto Sans JP", sans-serif;
+    font-family: var(--font-jp-sans), "Noto Sans JP", sans-serif;
 }
-@mixin poppins {
-    font-family: var(--font-poppins), Poppins, sans-serif;
+
+@mixin serif {
+    font-family: var(--font-jp-serif), "Noto Serif JP", serif;
+}
+
+@mixin cormorant {
+    font-family: var(--font-cormorant), "Cormorant Unicase", serif;
 }

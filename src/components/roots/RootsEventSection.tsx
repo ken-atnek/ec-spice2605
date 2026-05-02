@@ -16,7 +16,7 @@ type Props = {
 
 export default function RootsEventSection({ image, title, text }: Props) {
   return (
-    <section className={styles.root}>
+    <section className={styles.rootsEventSection}>
       <header className={styles.head}>
         <p className={styles.titleEn}>EVENT</p>
         <hr className={styles.rule} />

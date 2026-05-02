@@ -6,6 +6,7 @@
  * Last updated: 2026-05-01
  * ======================================= */
 import styles from "./RootsHero.module.scss";
+import Image from "next/image";
 
 type Props = {
   image: string;
@@ -14,19 +15,19 @@ type Props = {
 
 export default function RootsHero({ image, catchCopy }: Props) {
   return (
-    <section className={styles.root}>
-      <div className={styles.visual} style={{ backgroundImage: `url(${image})` }}>
-        <div className={styles.logoCard}>
-          <p className={styles.logoMain}>SPICE</p>
-          <p className={styles.logoSub}>よかモノがたり</p>
-        </div>
-
-        <button type="button" className={styles.menuButton} aria-label="メニュー">
-          ≡
-        </button>
-
+    <section className={styles.rootsHero}>
+      <h1 className={styles.logoCard}>
+        <Image
+          src="/images/spice-logo.webp"
+          alt="くまにち　すぱいす"
+          width={78}
+          height={33}
+        />
+        <p>よかモノがたり</p>
+      </h1>
+      <div className={styles.boxContents}>
+        <Image src={image} alt="" fill className={styles.heroImage} />
         <p className={styles.catchCopy}>{catchCopy}</p>
-        <div className={styles.overlay} />
       </div>
     </section>
   );

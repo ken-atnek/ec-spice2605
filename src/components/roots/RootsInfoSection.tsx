@@ -25,7 +25,7 @@ export default function RootsInfoSection({
   holiday,
 }: Props) {
   return (
-    <section className={styles.root}>
+    <section className={styles.rootsInfoSection}>
       <div className={styles.inner}>
         <header className={styles.head}>
           <p className={styles.titleEn}>INFO.</p>

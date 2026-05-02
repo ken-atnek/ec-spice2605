@@ -10,7 +10,8 @@
 6. `docs/rules/coding-style.md`
 7. `docs/rules/nextjs-export.md`
 8. `docs/rules/fetch-pattern.md`
-9. `docs/rules/checklist.md`
+9. `docs/rules/ui-interactions.md`
+10. `docs/rules/checklist.md`
 
 必須ルール（最優先）:
 

@@ -72,7 +72,7 @@
         }
         p {
             font-size: fz(16);
-            @include poppins;
+            @include cormorant;
             font-weight: 300;
             @include sp {
                 font-size: fz(14);
@@ -134,7 +134,7 @@
         .textEn {
             color: #d9d9d9;
             font-size: clamp(2rem, 9.3vw, 20rem);
-            @include poppins;
+            @include cormorant;
             font-weight: 300;
             letter-spacing: -0.03em;
             padding-right: 3rem;
@@ -218,7 +218,7 @@
                 }
             }
             .categoryHeader {
-                @include poppins;
+                @include cormorant;
                 font-size: inherit;
                 writing-mode: vertical-rl;
                 @include sp {
@@ -276,7 +276,7 @@
                     font-size: inherit;
                     .nameEn {
                         font-size: fz(28);
-                        @include poppins;
+                        @include cormorant;
                         letter-spacing: 0.3em;
                         font-weight: 300;
                         @include sp {

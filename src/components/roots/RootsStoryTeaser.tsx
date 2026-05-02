@@ -32,7 +32,7 @@ export default function RootsStoryTeaser({
   illustration,
 }: Props) {
   return (
-    <section className={styles.root}>
+    <section className={styles.rootsStoryTeaser}>
       <div className={styles.inner}>
         <header className={styles.head}>
           <p className={styles.titleEn}>STORY</p>

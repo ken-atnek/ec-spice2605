@@ -1,4 +1,14 @@
-.root {
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsCommonProfile スタイル
+ * URL: /src/components/roots/RootsCommonProfile.module.scss
+ * Referenced in: /src/components/roots/RootsCommonProfile.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsCommonProfile {
   width: min(100%, 390px);
   margin: 0 auto;
   padding: 22px 16px 0;
@@ -65,8 +75,7 @@
   font-size: 2rem;
   line-height: 1.95;
   letter-spacing: 0.04em;
-}
-
-.text + .text {
-  margin-top: 1em;
+  & + & {
+    margin-top: 1em;
+  }
 }

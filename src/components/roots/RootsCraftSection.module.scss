@@ -1,4 +1,14 @@
-.root {
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsCraftSection スタイル
+ * URL: /src/components/roots/RootsCraftSection.module.scss
+ * Referenced in: /src/components/roots/RootsCraftSection.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsCraftSection {
   width: min(100%, 390px);
   margin: 0 auto;
   padding: 40px 16px 0;
@@ -52,18 +62,13 @@
   font-size: 1.9rem;
   line-height: 1.9;
   letter-spacing: 0.03em;
-}
-
-.mainText + .mainText {
-  margin-top: 1em;
+  & + & {
+    margin-top: 1em;
+  }
 }
 
 .list {
   margin-top: 46px;
-}
-
-.item + .item {
-  margin-top: 30px;
 }
 
 .itemNo {
@@ -91,8 +96,13 @@
   font-size: 1.8rem;
   line-height: 1.9;
   letter-spacing: 0.03em;
+  & + & {
+    margin-top: 0.8em;
+  }
 }
 
-.itemText + .itemText {
-  margin-top: 0.8em;
+.item {
+  & + & {
+    margin-top: 30px;
+  }
 }

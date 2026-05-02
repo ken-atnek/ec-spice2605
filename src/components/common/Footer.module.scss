@@ -28,7 +28,7 @@
         }
     }
     .copyright {
-        @include poppins;
+        @include cormorant;
         font-weight: 300;
         font-size: fz(14);
         margin-right: auto;
@@ -49,7 +49,7 @@
         }
         a {
             font-size: fz(16);
-            @include poppins;
+            @include cormorant;
             font-weight: 500;
             text-transform: uppercase;
         }
@@ -68,7 +68,7 @@
         .tel,
         .fax {
             font-size: fz(16);
-            @include poppins;
+            @include cormorant;
             font-weight: 500;
             line-height: 1.4em;
         }
@@ -81,7 +81,7 @@
             .itemMap,
             .itemMail {
                 font-size: fz(16);
-                @include poppins;
+                @include cormorant;
                 font-weight: 500;
             }
             .itemMap {

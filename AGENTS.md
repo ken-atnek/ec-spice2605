@@ -17,7 +17,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 5. `docs/rules/coding-style.md`
 6. `docs/rules/nextjs-export.md`
 7. `docs/rules/fetch-pattern.md`
-8. `docs/rules/checklist.md`
+8. `docs/rules/ui-interactions.md`
+9. `docs/rules/checklist.md`
 
 ---
 
@@ -25,6 +26,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 - Tailwind CSS は使用しない
 - スタイルは SCSS で実装する
+- 生の `a` タグは使わず、内部遷移は `Link`、外部遷移は `ExternalLink` を使う
+- `src/components/roots` 配下の親ラッパークラスは `root` を避け、`rootsHero` のようにコンポーネント名ベースで命名する
 - `next.config.ts` の `output: 'export'` を維持する
 - `docs` に重要な `.md` を追加したら、この参照順に追記して同期する
 - `docs` に運用上重要な `.md` を追加・更新した場合は、`CLAUDE.md` の参照順にも必ず同期する

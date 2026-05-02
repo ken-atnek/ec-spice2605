@@ -28,7 +28,7 @@ export default function RootsCraftSection({
   items,
 }: Props) {
   return (
-    <section className={styles.root}>
+    <section className={styles.rootsCraftSection}>
       <header className={styles.head}>
         <p className={styles.titleEn}>CRAFT</p>
         <hr className={styles.rule} />

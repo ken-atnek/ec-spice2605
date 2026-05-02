@@ -9,6 +9,28 @@ import type { Metadata } from "next";
 import "@/styles/globals.scss";
 import SvgDefs from "@/components/SvgDefs";
 import { isRealProduction } from "@/lib/env";
+import { Noto_Sans_JP, Noto_Serif_JP, Cormorant_Unicase } from "next/font/google";
+
+const notoSansJp = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-jp-sans",
+  display: "swap",
+});
+
+const notoSerifJp = Noto_Serif_JP({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-jp-serif",
+  display: "swap",
+});
+
+const cormorantUnicase = Cormorant_Unicase({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
 
 // 本番のみ metadataBase を設定
 const metadataBase = isRealProduction
@@ -58,7 +80,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" data-scroll-behavior="smooth">
+    <html
+      lang="ja"
+      data-scroll-behavior="smooth"
+      className={`${notoSansJp.variable} ${notoSerifJp.variable} ${cormorantUnicase.variable}`}
+    >
       <head>
         <meta
           name="format-detection"
