@@ -9,73 +9,56 @@
  * ======================================= */
 
 .rootsInfoSection {
-  width: min(100%, 390px);
-  margin: 0 auto;
-  padding: 40px 16px 56px;
-}
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 6em $mobile-padding 4em;
+    article {
+        background-color: #eaeaea;
+        padding-top: 4em;
+        padding-bottom: 6em;
+        padding-inline: 2em;
+        border-radius: 1rem;
+        .itemH2 {
+            @include itemH2;
+        }
+        dl {
+            position: relative;
+            display: flex;
+            font-size: inherit;
+            flex-direction: column;
+            gap: 2em 0;
+            margin-top: 3em;
+            div {
+                font-size: inherit;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em 0;
+                dt {
+                    font-size: fs-fluid(14);
+                    font-weight: 700;
+                }
+                dd {
+                    font-size: inherit;
+                    display: flex;
+                    flex-direction: column;
 
-.inner {
-  background: #f4f4f4;
-  border-radius: 14px;
-  padding: 44px 16px 40px;
-  color: #5a3f2a;
-}
+                    span {
+                        font-size: fs-fluid(14);
 
-.head {
-  text-align: center;
-  margin-bottom: 36px;
-}
-
-.titleEn {
-  margin: 0;
-  font-size: 5.2rem;
-  line-height: 1;
-  letter-spacing: 0.14em;
-}
-
-.rule {
-  width: 64px;
-  height: 2px;
-  margin: 16px auto;
-  border: 0;
-  background: #7a6755;
-}
-
-.titleJa {
-  margin: 0;
-  font-size: 1.4rem;
-  line-height: 1.4;
-}
-
-.label {
-  margin: 0;
-  font-size: 2.2rem;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.value {
-  margin: 8px 0 0;
-  font-size: 1.9rem;
-  line-height: 1.8;
-}
-
-.row {
-  & + & {
-    margin-top: 28px;
-  }
-}
-
-.mapButton {
-  display: inline-block;
-  margin-top: 10px;
-  min-width: 220px;
-  padding: 10px 20px;
-  border-radius: 999px;
-  background: #b8b2a8;
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  font-size: 2rem;
-  line-height: 1.4;
+                        line-height: 1.6em;
+                    }
+                    .linkMap {
+                        background-color: #b2aba1;
+                        color: $pure-white;
+                        align-self: flex-start;
+                        font-size: fs-fluid(16);
+                        padding: 0.7em 3em;
+                        border-radius: 100vmax;
+                        margin-top: 0.5em;
+                    }
+                }
+            }
+        }
+    }
 }

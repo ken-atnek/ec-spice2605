@@ -5,8 +5,8 @@
  * Created: 2026-05-01
  * Last updated: 2026-05-01
  * ======================================= */
-import Image from "next/image";
-import styles from "./RootsCommonProfile.module.scss";
+import Image from 'next/image';
+import styles from './RootsCommonProfile.module.scss';
 
 type Props = {
   shopName: string;
@@ -15,6 +15,7 @@ type Props = {
   nameEn: string;
   pageText: string[];
   illustration: string;
+  isInsideTeaser?: boolean;
 };
 
 export default function RootsCommonProfile({
@@ -24,20 +25,29 @@ export default function RootsCommonProfile({
   nameEn,
   pageText,
   illustration,
+  isInsideTeaser = false,
 }: Props) {
   return (
-    <section className={styles.rootsCommonProfile}>
-      <div className={styles.head}>
+    <section
+      className={`${styles.rootsCommonProfile} ${
+        isInsideTeaser ? styles.isInsideTeaser : ''
+      }`}
+    >
+      <div className={styles.boxProfile}>
         <div className={styles.meta}>
           <p className={styles.shopName}>{shopName}</p>
           <p className={styles.position}>{position}</p>
           <p className={styles.name}>{name}</p>
           <p className={styles.nameEn}>{nameEn}</p>
         </div>
-        <Image className={styles.illustration} src={illustration} alt="イラスト" width={200} height={200} />
+        <Image
+          className={styles.illustration}
+          src={illustration}
+          alt="イラスト"
+          width={200}
+          height={200}
+        />
       </div>
-
-      <hr className={styles.rule} />
 
       {pageText.map((paragraph, index) => (
         <p key={`${paragraph}-${index}`} className={styles.text}>

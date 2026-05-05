@@ -13,14 +13,29 @@ export type ProductPageData = {
     text: string[];
   };
   main: {
-    title: string;
+    title: string | string[];
     text: string[];
   };
+  onlineTitle?: string;
   ecUrl: string;
   items: {
     image: string;
-    title: string;
-    textWithImage: string[];
+    title: string | string[];
+    textWithImage: Array<
+      | string
+      | {
+          type: "text" | "image";
+          text?: string;
+          src?: string;
+          alt?: string;
+        }
+    >;
+    contentBlocks?: {
+      type: "text" | "image";
+      text?: string;
+      src?: string;
+      alt?: string;
+    }[];
   }[];
   personStoryImage?: string;
 };
@@ -32,7 +47,7 @@ export type StoryPageData = {
   };
   sections?: {
     image: string;
-    title: string;
+    title: string | string[];
     textWithImage: string[];
   }[];
 };
@@ -51,10 +66,10 @@ export type CommonData = {
 
 export type InfoData = {
   infoShopName: string;
-  place: string;
+  place: string | string[];
   mapUrl: string;
   businessHours: string[];
-  tel: string;
+  tel: string | string[];
   holiday: string;
 };
 
@@ -67,10 +82,22 @@ export type EventsData = {
 
 function fetchJson<T>(path: string): Promise<T> {
   const ts = Date.now();
-  return fetch(`${withBasePath(path)}?t=${ts}`, { cache: "no-store" }).then((res) => {
-    if (!res.ok) throw new Error("fetch failed");
-    return res.json() as Promise<T>;
-  });
+  const url = `${withBasePath(path)}?t=${ts}`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+  return fetch(url, { cache: "no-store", signal: controller.signal })
+    .then((res) => {
+      if (!res.ok) throw new Error(`fetch failed: ${res.status} ${url}`);
+      return res.json() as Promise<T>;
+    })
+    .catch((error) => {
+      if (error instanceof Error && error.name === "AbortError") {
+        throw new Error(`fetch timeout: ${url}`);
+      }
+      if (error instanceof Error) throw error;
+      throw new Error(`fetch failed: ${url}`);
+    })
+    .finally(() => clearTimeout(timer));
 }
 
 export function fetchProductPage(folderId: string): Promise<ProductPageData> {

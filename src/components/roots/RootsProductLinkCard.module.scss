@@ -9,23 +9,44 @@
  * ======================================= */
 
 .rootsProductLinkCard {
-  width: min(100%, 390px);
-  margin: 0 auto;
-  padding: 20px 16px 0;
-}
-
-.link {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  border-radius: 16px;
-  background: #f3f3f3;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.image {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 0 $mobile-padding 0;
+    margin-top: 5em;
+    margin-bottom: 5em;
+    a {
+        background-color: $pure-white;
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 1rem;
+        padding: 1rem;
+        width: 60vw;
+        align-self: center;
+        position: relative;
+        img {
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+        p {
+            color: $pure-white;
+            position: absolute;
+            left: 50%;
+            translate: -50%;
+            z-index: 1;
+            bottom: 1rem;
+            font-size: fs-fluid(16);
+            font-weight: 600;
+            width: calc(100% - 2rem);
+            text-align: center;
+            @include serif;
+            padding-top: 4rem;
+            padding-bottom: 1.6rem;
+            background: linear-gradient(
+                180deg,
+                rgba(99, 70, 40, 0) 34.68%,
+                rgba(99, 70, 40, 0.85) 100%
+            );
+        }
+    }
 }

@@ -9,70 +9,78 @@
  * ======================================= */
 
 .rootsEventSection {
-  width: min(100%, 390px);
-  margin: 0 auto;
-  padding: 40px 16px 56px;
-  color: #5a3f2a;
-}
-
-.head {
-  text-align: center;
-  margin-bottom: 28px;
-}
-
-.titleEn {
-  margin: 0;
-  font-size: 5.2rem;
-  line-height: 1;
-  letter-spacing: 0.14em;
-}
-
-.rule {
-  width: 64px;
-  height: 2px;
-  margin: 16px auto;
-  border: 0;
-  background: #7a6755;
-}
-
-.titleJa {
-  margin: 0;
-  font-size: 1.4rem;
-  line-height: 1.4;
-}
-
-.card {
-  border: 1px solid #cf1f24;
-  padding: 14px;
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 0 $mobile-padding 4em;
+    .itemH2 {
+        @include itemH2;
+    }
+    .boxContents {
+        font-size: inherit;
+        display: flex;
+        flex-direction: column;
+        border: 2px solid;
+        color: $main-red;
+        padding: 2em 1em;
+        margin-top: 2em;
+        h3 {
+            font-size: fs-fluid(24);
+        }
+        img {
+            aspect-ratio: 1;
+            object-fit: cover;
+            font-size: inherit;
+            margin-top: 0.8em;
+        }
+        .wrapDetails {
+            position: relative;
+            font-size: inherit;
+            padding-inline: 1em;
+            h4 {
+                font-size: fs-fluid(18);
+                font-weight: 500;
+            }
+            .itemText {
+                font-size: inherit;
+                display: flex;
+                flex-direction: column;
+                p {
+                    font-size: fs-fluid(16);
+                    line-height: 2em;
+                }
+            }
+        }
+    }
 }
 
 .shopTitle {
-  margin: 0;
-  color: #cf1f24;
-  font-size: 5.6rem;
-  line-height: 1.2;
+    margin: 0;
+    color: #cf1f24;
+    font-size: 5.6rem;
+    line-height: 1.2;
 }
 
 .image {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin-top: 8px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 8px;
 }
 
 .postTitle {
-  margin: 16px 0 0;
-  color: #cf1f24;
-  font-size: 2.2rem;
-  line-height: 1.6;
+    margin: 16px 0 0;
+    color: #cf1f24;
+    font-size: 2.2rem;
+    line-height: 1.6;
 }
 
 .text {
-  margin: 14px 0 0;
-  color: #cf1f24;
-  font-size: 1.9rem;
-  line-height: 1.9;
-  & + & {
-    margin-top: 0.8em;
-  }
+    margin: 14px 0 0;
+    color: #cf1f24;
+    font-size: 1.9rem;
+    line-height: 1.9;
+    & + & {
+        margin-top: 0.8em;
+    }
 }

@@ -5,12 +5,12 @@
  * Created: 2026-05-02
  * Last updated: 2026-05-02
  * ======================================= */
-import Image from "next/image";
-import styles from "./RootsStorySectionList.module.scss";
+import Image from 'next/image';
+import styles from './RootsStorySectionList.module.scss';
 
 type SectionItem = {
   image: string;
-  title: string;
+  title: string | string[];
   textWithImage: string[];
 };
 
@@ -21,29 +21,49 @@ type Props = {
 export default function RootsStorySectionList({ sections }: Props) {
   return (
     <section className={styles.rootsStorySectionList}>
-      {sections.map((section, index) => {
-        const no = `#${String(index + 1).padStart(2, "0")}`;
-        const isLast = index === sections.length - 1;
-        return (
-          <article key={`${section.title}-${index}`} className={styles.item}>
-            <p className={styles.no}>{no}</p>
-            <Image
-              src={section.image}
-              alt={section.title}
-              width={1200}
-              height={700}
-              className={styles.image}
-            />
-            <h3 className={styles.title}>{section.title}</h3>
-            {section.textWithImage.map((paragraph, pIndex) => (
-              <p key={`${paragraph}-${pIndex}`} className={styles.text}>
-                {paragraph}
-              </p>
-            ))}
-            {!isLast ? <p className={styles.dot}>・<br />・<br />・<br />・<br />・</p> : null}
-          </article>
-        );
-      })}
+      <ul className={styles.listStory}>
+        {sections.map((section, index) => {
+          const no = `#${String(index + 1).padStart(2, '0')}`;
+          const titleLines = Array.isArray(section.title)
+            ? section.title
+            : [section.title];
+          const titleText = Array.isArray(section.title)
+            ? section.title.join('')
+            : section.title;
+          return (
+            <li key={`${titleText}-${index}`}>
+              {index === 0 ? (
+                <div className={styles.itemH2}>
+                  <span>story</span>
+                  <h2>人物ストーリー</h2>
+                </div>
+              ) : null}
+              <p className={styles.no}>{no}</p>
+              <Image
+                src={section.image}
+                alt={titleText}
+                width={1200}
+                height={700}
+              />
+              <h3>
+                {titleLines.map((line, lineIndex) => (
+                  <span key={`${line}-${lineIndex}`}>
+                    {line}
+                    {lineIndex < titleLines.length - 1 ? <br /> : null}
+                  </span>
+                ))}
+              </h3>
+              <div className={styles.itemText}>
+                {section.textWithImage.map((paragraph, pIndex) => (
+                  <p key={`${paragraph}-${pIndex}`} className={styles.text}>
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }

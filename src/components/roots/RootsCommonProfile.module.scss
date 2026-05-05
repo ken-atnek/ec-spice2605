@@ -9,73 +9,80 @@
  * ======================================= */
 
 .rootsCommonProfile {
-  width: min(100%, 390px);
-  margin: 0 auto;
-  padding: 22px 16px 0;
-  color: #5a3f2a;
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 2em $mobile-padding 4em;
+    gap: 3em 0;
+    .boxProfile {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        font-size: inherit;
+        .meta {
+            font-size: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-bottom: 3em;
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 4px;
+                width: 7em;
+                background-color: $main-blown;
+            }
+            .shopName {
+                margin: 0;
+                color: $main-red;
+                @include cormorant;
+                font-size: fs-fluid(16);
+                letter-spacing: 0.1em;
+            }
+            .position {
+                font-size: fs-fluid(13);
+                letter-spacing: 0.02em;
+            }
+            .name {
+                font-size: fs-fluid(24);
+                @include serif;
+                font-weight: 500;
+                letter-spacing: 0.14em;
+                margin-top: 0.5em;
+                margin-bottom: 0.3em;
+            }
+            .nameEn {
+                @include cormorant;
+                font-size: fs-fluid(14);
+                letter-spacing: 0.1em;
+                font-weight: 600;
+            }
+        }
+        .illustration {
+            object-fit: contain;
+            font-size: inherit;
+            padding-top: 2em;
+            width: 25vw;
+        }
+    }
+    .text {
+        font-size: fs-fluid(16);
+        text-align: justify;
+        line-height: 2em;
+    }
 }
 
-.head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.meta {
-  flex: 1;
-  min-width: 0;
-}
-
-.shopName {
-  margin: 0;
-  color: #c62026;
-  font-size: 2rem;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-}
-
-.position {
-  margin: 8px 0 0;
-  font-size: 1.8rem;
-  line-height: 1.4;
-}
-
-.name {
-  margin: 24px 0 0;
-  font-size: 5rem;
-  line-height: 1.15;
-  letter-spacing: 0.08em;
-}
-
-.nameEn {
-  margin: 18px 0 0;
-  font-size: 2rem;
-  line-height: 1.2;
-  letter-spacing: 0.16em;
-}
-
-.illustration {
-  width: 44%;
-  max-width: 170px;
-  height: auto;
-  object-fit: contain;
-}
-
-.rule {
-  width: 180px;
-  height: 10px;
-  margin: 30px 0 22px;
-  border: 0;
-  background: #66635f;
-}
-
-.text {
-  margin: 0;
-  font-size: 2rem;
-  line-height: 1.95;
-  letter-spacing: 0.04em;
-  & + & {
-    margin-top: 1em;
-  }
+.isInsideTeaser {
+    padding: 2em 0 3em;
+    gap: 2em 0;
+    .boxProfile {
+        .meta {
+            padding-bottom: unset;
+            &::after {
+                display: none;
+            }
+        }
+    }
 }

@@ -5,10 +5,10 @@
  * Created: 2026-05-02
  * Last updated: 2026-05-02
  * ======================================= */
-import Link from "next/link";
-import Image from "next/image";
-import RootsCommonProfile from "./RootsCommonProfile";
-import styles from "./RootsStoryTeaser.module.scss";
+import Link from 'next/link';
+import Image from 'next/image';
+import RootsCommonProfile from './RootsCommonProfile';
+import styles from './RootsStoryTeaser.module.scss';
 
 type Props = {
   image: string;
@@ -32,14 +32,12 @@ export default function RootsStoryTeaser({
   illustration,
 }: Props) {
   return (
-    <section className={styles.rootsStoryTeaser}>
-      <div className={styles.inner}>
-        <header className={styles.head}>
-          <p className={styles.titleEn}>STORY</p>
-          <hr className={styles.rule} />
-          <p className={styles.titleJa}>人物ストーリー</p>
-        </header>
-
+    <div className={styles.rootsStoryTeaserFrame}>
+      <article>
+        <div className={styles.itemH2}>
+          <span>STORY</span>
+          <h2>人物ストーリー</h2>
+        </div>
         <Image
           src={image}
           alt="人物ストーリー"
@@ -47,7 +45,6 @@ export default function RootsStoryTeaser({
           height={700}
           className={styles.hero}
         />
-
         <RootsCommonProfile
           shopName={shopName}
           position={position}
@@ -55,16 +52,12 @@ export default function RootsStoryTeaser({
           nameEn={nameEn}
           pageText={pageText}
           illustration={illustration}
+          isInsideTeaser
         />
-
-        <p className={styles.dot}>・<br />・<br />・<br />・<br />・</p>
-
-        <div className={styles.buttonWrap}>
-          <Link href={storyHref} className={styles.button}>
-            STORYの続きを見る
-          </Link>
-        </div>
-      </div>
-    </section>
+        <Link href={storyHref} className={styles.linkStory}>
+          STORYの続きを見る
+        </Link>
+      </article>
+    </div>
   );
 }

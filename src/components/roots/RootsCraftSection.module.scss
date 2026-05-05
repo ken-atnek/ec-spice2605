@@ -9,100 +9,108 @@
  * ======================================= */
 
 .rootsCraftSection {
-  width: min(100%, 390px);
-  margin: 0 auto;
-  padding: 40px 16px 0;
-  color: #5a3f2a;
-}
-
-.head {
-  text-align: center;
-}
-
-.titleEn {
-  margin: 0;
-  font-size: 5.2rem;
-  line-height: 1;
-  letter-spacing: 0.14em;
-}
-
-.rule {
-  width: 64px;
-  height: 2px;
-  margin: 16px auto;
-  border: 0;
-  background: #7a6755;
-}
-
-.titleJa {
-  margin: 0;
-  font-size: 1.4rem;
-  line-height: 1.4;
-}
-
-.dot {
-  margin: 18px auto 12px;
-  width: 8px;
-  color: #7a6755;
-  letter-spacing: 0.2em;
-  line-height: 1;
-  text-align: center;
-}
-
-.mainTitle {
-  margin: 0;
-  text-align: center;
-  font-size: 2rem;
-  line-height: 1.6;
-  letter-spacing: 0.04em;
-}
-
-.mainText {
-  margin: 24px 0 0;
-  font-size: 1.9rem;
-  line-height: 1.9;
-  letter-spacing: 0.03em;
-  & + & {
-    margin-top: 1em;
-  }
-}
-
-.list {
-  margin-top: 46px;
-}
-
-.itemNo {
-  margin: 0 0 8px;
-  font-size: 4rem;
-  line-height: 1;
-  letter-spacing: 0.06em;
-}
-
-.itemImage {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.itemTitle {
-  margin: 12px 0 0;
-  font-size: 2rem;
-  line-height: 1.6;
-  letter-spacing: 0.04em;
-}
-
-.itemText {
-  margin: 14px 0 0;
-  font-size: 1.8rem;
-  line-height: 1.9;
-  letter-spacing: 0.03em;
-  & + & {
-    margin-top: 0.8em;
-  }
-}
-
-.item {
-  & + & {
-    margin-top: 30px;
-  }
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 6em $mobile-padding 4em;
+    .itemH2 {
+        @include itemH2;
+    }
+    h3 {
+        position: relative;
+        font-size: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &::before {
+            content: "";
+            display: block;
+            width: 3px;
+            height: 3px;
+            margin: 2em auto 4em;
+            background-color: #6a5140;
+            border-radius: 50%;
+            box-shadow:
+                0 8px 0 #6a5140,
+                0 16px 0 #6a5140,
+                0 24px 0 #6a5140,
+                0 32px 0 #6a5140;
+        }
+        span {
+            font-size: fs-fluid(15);
+            text-align: center;
+            line-height: 1.6em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+    }
+    .wrapMainText {
+        font-size: inherit;
+        display: flex;
+        flex-direction: column;
+        gap: 2em 0;
+        margin-top: 2em;
+        margin-bottom: 3em;
+        p {
+            font-size: fs-fluid(16);
+            line-height: 2em;
+            letter-spacing: 0.02em;
+            text-align: justify;
+        }
+    }
+    .productsList {
+        position: relative;
+        font-size: inherit;
+        display: flex;
+        flex-direction: column;
+        margin-top: 1em;
+        gap: 3em 0;
+        li {
+            position: relative;
+            font-size: inherit;
+            padding-bottom: 5em;
+            &:not(:last-of-type) {
+                border-bottom: 1px solid #9c948c;
+            }
+            .itemNo {
+                @include cormorant;
+                font-size: fs-fluid(28);
+                margin-bottom: 0.1em;
+            }
+            .itemImage {
+                aspect-ratio: 33/22;
+                object-fit: cover;
+            }
+            h4 {
+                font-size: inherit;
+                margin-top: 1em;
+                span {
+                    font-size: fs-fluid(18);
+                    font-weight: 600;
+                    line-height: 1.6em;
+                    @include serif;
+                }
+            }
+            .itemDetails {
+                font-size: inherit;
+                display: flex;
+                flex-direction: column;
+                padding-top: 1em;
+                p {
+                    font-size: fs-fluid(16);
+                    line-height: 2em;
+                    text-align: justify;
+                }
+                .itemInlineImage {
+                    margin-top: 1em;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                    max-width: 57vw;
+                    align-self: center;
+                    border-radius: 1rem;
+                    margin-block: 3em;
+                }
+            }
+        }
+    }
 }

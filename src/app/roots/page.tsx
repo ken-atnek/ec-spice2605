@@ -1,4 +1,4 @@
-"use client";
+'use client';
 /* =======================================
  * 熊日すぱいす ROOTS ページ
  * URL: /src/app/roots/page.tsx
@@ -6,20 +6,20 @@
  * Created: 2026-04-04
  * Last updated: 2026-05-01
  * ======================================= */
-import { Suspense, useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import RootsHero from "@/components/roots/RootsHero";
-import RootsCommonProfile from "@/components/roots/RootsCommonProfile";
-import RootsWebStoreCta from "@/components/roots/RootsWebStoreCta";
-import RootsCraftSection from "@/components/roots/RootsCraftSection";
-import RootsStoryTeaser from "@/components/roots/RootsStoryTeaser";
-import RootsInfoSection from "@/components/roots/RootsInfoSection";
-import RootsEventSection from "@/components/roots/RootsEventSection";
-import RootsFooter from "@/components/roots/RootsFooter";
-import RootsNoticeText from "@/components/roots/RootsNoticeText";
-import RootsStorySectionList from "@/components/roots/RootsStorySectionList";
-import RootsProductLinkCard from "@/components/roots/RootsProductLinkCard";
-import RootsHeaderMenu from "@/components/roots/RootsHeaderMenu";
+import { Suspense, useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import RootsHero from '@/components/roots/RootsHero';
+import RootsCommonProfile from '@/components/roots/RootsCommonProfile';
+import RootsWebStoreCta from '@/components/roots/RootsWebStoreCta';
+import RootsCraftSection from '@/components/roots/RootsCraftSection';
+import RootsStoryTeaser from '@/components/roots/RootsStoryTeaser';
+import RootsInfoSection from '@/components/roots/RootsInfoSection';
+import RootsEventSection from '@/components/roots/RootsEventSection';
+import RootsFooter from '@/components/roots/RootsFooter';
+import RootsNoticeText from '@/components/roots/RootsNoticeText';
+import RootsStorySectionList from '@/components/roots/RootsStorySectionList';
+import RootsProductLinkCard from '@/components/roots/RootsProductLinkCard';
+import RootsHeaderMenu from '@/components/roots/RootsHeaderMenu';
 import {
   fetchCommonData,
   fetchEventsData,
@@ -31,17 +31,17 @@ import {
   type InfoData,
   type ProductPageData,
   type StoryPageData,
-} from "@/lib/roots/fetchRootsData";
+} from '@/lib/roots/fetchRootsData';
 
 // useSearchParams を使うため Suspense 内に分離
 function RootsContent() {
   // URLクエリから id と page を取得
   // 例: /roots/?id=roots_001&page=story
   const searchParams = useSearchParams();
-  const id = searchParams.get("id"); // "roots_001"
-  const page = searchParams.get("page"); // "story" | null
-  const folderId = id?.replace("roots_", ""); // "001" (JSONフォルダ名)
-  const isStoryPage = page === "story";
+  const id = searchParams.get('id'); // "roots_001"
+  const page = searchParams.get('page'); // "story" | null
+  const folderId = id?.replace('roots_', ''); // "001" (JSONフォルダ名)
+  const isStoryPage = page === 'story';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // ページ種別に応じたJSONデータ
@@ -52,6 +52,7 @@ function RootsContent() {
   const [infoData, setInfoData] = useState<InfoData | null>(null);
   const [eventsData, setEventsData] = useState<EventsData | null>(null);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // ページ種別に応じて商品 or ストーリーのJSONをfetch
   useEffect(() => {
@@ -59,12 +60,18 @@ function RootsContent() {
     if (isStoryPage) {
       fetchStoryPage(folderId)
         .then(setStoryPage)
-        .catch(() => setIsError(true));
+        .catch((error) => {
+          setIsError(true);
+          setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
+        });
       return;
     }
     fetchProductPage(folderId)
       .then(setProductPage)
-      .catch(() => setIsError(true));
+      .catch((error) => {
+        setIsError(true);
+        setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
+      });
   }, [folderId, isStoryPage]);
 
   // common.json は両ページ共通で常にfetch
@@ -72,21 +79,30 @@ function RootsContent() {
     if (!folderId) return;
     fetchCommonData(folderId)
       .then(setCommonData)
-      .catch(() => setIsError(true));
+      .catch((error) => {
+        setIsError(true);
+        setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
+      });
   }, [folderId]);
 
   useEffect(() => {
     if (!folderId) return;
     fetchInfoData(folderId)
       .then(setInfoData)
-      .catch(() => setIsError(true));
+      .catch((error) => {
+        setIsError(true);
+        setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
+      });
   }, [folderId]);
 
   useEffect(() => {
     if (!folderId) return;
     fetchEventsData(folderId)
       .then(setEventsData)
-      .catch(() => setIsError(true));
+      .catch((error) => {
+        setIsError(true);
+        setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
+      });
   }, [folderId]);
 
   // 両ページで共通して表示するプロフィールセクション
@@ -104,17 +120,27 @@ function RootsContent() {
     <RootsWebStoreCta url={commonData.onlineShopUrl} />
   ) : null;
   const menuItems = [
-    { en: "STORY", ja: "人物ストーリー", href: `/roots?id=roots_${folderId}&page=story#story` },
-    { en: "CRAFT", ja: "商品へのこだわり", href: `/roots?id=roots_${folderId}#craft` },
-    { en: "INFO.", ja: "お店情報", href: `#info` },
-    { en: "EVENT", ja: "イベント", href: `#event` },
+    {
+      en: 'STORY',
+      ja: '人物ストーリー',
+      href: `/roots?id=roots_${folderId}&page=story#story`,
+    },
+    {
+      en: 'CRAFT',
+      ja: '商品へのこだわり',
+      href: `/roots?id=roots_${folderId}#craft`,
+    },
+    { en: 'INFO.', ja: 'お店情報', href: `#info` },
+    { en: 'EVENT', ja: 'イベント', href: `#event` },
   ];
 
   // --- ストーリーページ ---
   if (isStoryPage) {
     const storyHeroImage = storyPage?.hero?.image;
     const storyHeroText = storyPage?.hero?.text;
-    if (!storyHeroImage || !storyHeroText || !commonData) return null;
+    if (isError) return <p>データの読み込みに失敗しました。{errorMessage}</p>;
+    if (!storyHeroImage || !storyHeroText?.length || !commonData)
+      return <p>読み込み中です...</p>;
     return (
       <>
         <RootsHeaderMenu
@@ -124,10 +150,7 @@ function RootsContent() {
           items={menuItems}
           webStoreUrl={commonData?.onlineShopUrl}
         />
-        <RootsHero
-          image={storyHeroImage}
-          catchCopy={storyHeroText.join("\n")}
-        />
+        <RootsHero image={storyHeroImage} catchCopy={storyHeroText} />
         {commonSection}
         {storyPage?.sections && storyPage.sections.length > 0 ? (
           <div id="story">
@@ -172,8 +195,8 @@ function RootsContent() {
   }
 
   // --- 商品ページ ---
-  if (isError) return <p>データの読み込みに失敗しました。</p>;
-  if (!productPage || !commonData) return null;
+  if (isError) return <p>データの読み込みに失敗しました。{errorMessage}</p>;
+  if (!productPage || !commonData) return <p>読み込み中です...</p>;
 
   return (
     <>
@@ -186,7 +209,7 @@ function RootsContent() {
       />
       <RootsHero
         image={productPage.hero.image}
-        catchCopy={productPage.hero.text.join("\n")}
+        catchCopy={productPage.hero.text}
       />
       {commonSection}
       {webStoreSection}
@@ -194,6 +217,9 @@ function RootsContent() {
         <RootsCraftSection
           mainTitle={productPage.main.title}
           mainText={productPage.main.text}
+          onlineTitle={
+            productPage.onlineTitle || 'シェ・タニのバウムクーヘンを'
+          }
           ecUrl={productPage.ecUrl}
           items={productPage.items}
         />

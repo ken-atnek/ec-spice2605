@@ -8,83 +8,74 @@
 @use "./foundation/ui" as *;
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  @include sans;
+    @include sans;
 
-  // font-feature-settings: "palt";
-  font-size: clamp(1.2rem, #{$base-vw}vw + #{$slice}px, 1.6rem);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  justify-content: space-between;
-  width: 100%;
-  color: $pure-black;
-  background-color: $main-white;
-  max-width: calc($sp + 1px);
-  //   @include up-sp {
-  //     max-width: calc($tb + 1px);
-  //   }
+    // font-feature-settings: "palt";
+    font-size: clamp(1.2rem, #{$base-vw}vw + #{$slice}px, 1.6rem);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: space-between;
+    width: 100%;
+    color: $pure-black;
+    background-color: $main-white;
+    // max-width: calc($sp + 1px);
+    //   @include up-sp {
+    //     max-width: calc($tb + 1px);
+    //   }
 }
 
 main {
-  font-size: inherit;
-  flex: 1;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: $main-white;
+    font-size: inherit;
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $main-white;
 }
 
 section,
 article,
 header,
 footer {
-  width: 100%;
-  position: relative;
-  font-size: inherit;
-  z-index: 1;
+    width: 100%;
+    position: relative;
+    font-size: inherit;
+    z-index: 1;
 }
 
 svg {
-  width: 100%;
-  fill: unset;
-  stroke: unset;
+    width: 100%;
+    fill: unset;
+    stroke: unset;
 }
 
 br {
-  &.pc {
-    @include sp {
-      display: none;
+    &.pc {
+        @include sp {
+            display: none;
+        }
     }
-  }
 
-  &.sp {
-    display: none;
+    &.sp {
+        display: none;
 
-    @include sp {
-      display: inline;
+        @include sp {
+            display: inline;
+        }
     }
-  }
 }
 
 @include pc {
-  a[href^="tel:"] {
-    pointer-events: none;
-    cursor: default;
-  }
-}
-
-h2 {
-  @include cormorant;
-
-  font-size: fz(40);
-  font-weight: 300;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+    a[href^="tel:"] {
+        pointer-events: none;
+        cursor: default;
+    }
 }

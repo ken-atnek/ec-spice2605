@@ -5,9 +5,9 @@
  * Created: 2026-05-02
  * Last updated: 2026-05-02
  * ======================================= */
-import Link from "next/link";
-import Image from "next/image";
-import styles from "./RootsProductLinkCard.module.scss";
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './RootsProductLinkCard.module.scss';
 
 type Props = {
   href: string;
@@ -17,7 +17,7 @@ type Props = {
 export default function RootsProductLinkCard({ href, image }: Props) {
   return (
     <section className={styles.rootsProductLinkCard}>
-      <Link href={href} className={styles.link}>
+      <Link href={href}>
         <Image
           src={image}
           alt="商品のこだわりはこちら"
@@ -25,6 +25,7 @@ export default function RootsProductLinkCard({ href, image }: Props) {
           height={900}
           className={styles.image}
         />
+        <p>商品のこだわりはこちら</p>
       </Link>
     </section>
   );

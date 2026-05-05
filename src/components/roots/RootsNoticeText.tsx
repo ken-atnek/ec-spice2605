@@ -5,7 +5,7 @@
  * Created: 2026-05-02
  * Last updated: 2026-05-02
  * ======================================= */
-import styles from "./RootsNoticeText.module.scss";
+import styles from './RootsNoticeText.module.scss';
 
 type Props = {
   text: string;
@@ -14,7 +14,7 @@ type Props = {
 export default function RootsNoticeText({ text }: Props) {
   return (
     <section className={styles.rootsNoticeText}>
-      <p className={styles.text}>{text}</p>
+      <p>{text}</p>
     </section>
   );
 }

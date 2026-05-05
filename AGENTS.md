@@ -31,3 +31,15 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `next.config.ts` の `output: 'export'` を維持する
 - `docs` に重要な `.md` を追加したら、この参照順に追記して同期する
 - `docs` に運用上重要な `.md` を追加・更新した場合は、`CLAUDE.md` の参照順にも必ず同期する
+
+---
+
+## AI依頼テンプレ運用（固定）
+
+- 作業前に必ず次の4点を確認する
+  - やりたいこと
+  - 触っていいファイル
+  - ルール（最小修正・大改修しない）
+  - ゴール（完了条件）
+- 実装は最小差分を優先し、一度に大量変更しない
+- TSX変更時は、必要に応じてSCSSもセットで修正する
