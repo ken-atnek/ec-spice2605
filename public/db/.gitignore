@@ -1,0 +1,5 @@
+# Ignore everything under public/db by default
+*
+
+# Keep this file so the directory structure stays in Git
+!.gitignore
