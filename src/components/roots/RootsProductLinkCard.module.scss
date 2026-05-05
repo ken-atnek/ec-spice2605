@@ -1,0 +1,57 @@
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsProductLinkCard スタイル
+ * URL: /src/components/roots/RootsProductLinkCard.module.scss
+ * Referenced in: /src/components/roots/RootsProductLinkCard.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-05
+ * ======================================= */
+
+.rootsProductLinkCard {
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 0 $mobile-padding;
+    margin-top: 5em;
+    margin-bottom: 5em;
+
+    a {
+        background-color: $pure-white;
+        box-shadow: 0 0 8px 0 rgb(0 0 0 / 20%);
+        border-radius: 1rem;
+        padding: 1rem;
+        width: 60vw;
+        align-self: center;
+        position: relative;
+
+        img {
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        p {
+            color: $pure-white;
+            position: absolute;
+            left: 50%;
+            translate: -50%;
+            z-index: 1;
+            bottom: 1rem;
+            font-size: fs-fluid(16);
+            font-weight: 600;
+            width: calc(100% - 2rem);
+            text-align: center;
+
+            @include serif;
+
+            padding-top: 4rem;
+            padding-bottom: 1.6rem;
+            background: linear-gradient(
+                180deg,
+                rgb(99 70 40 / 0%) 34.68%,
+                rgb(99 70 40 / 85%) 100%
+            );
+        }
+    }
+}

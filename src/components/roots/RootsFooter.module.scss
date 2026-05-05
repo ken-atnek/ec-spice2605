@@ -1,0 +1,74 @@
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsFooter スタイル
+ * URL: /src/components/roots/RootsFooter.module.scss
+ * Referenced in: /src/components/roots/RootsFooter.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsFooter {
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 4em $mobile-padding 3em;
+    gap: 2em 0;
+
+    article {
+        font-size: inherit;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0 3em;
+
+        .itemLogo {
+            width: 20vw;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        nav {
+            position: relative;
+            font-size: inherit;
+            display: flex;
+            align-items: center;
+            gap: 0 1em;
+            flex: 1;
+
+            &::before {
+                content: "";
+                height: 1px;
+                background-color: $pure-black;
+                flex: 1;
+                margin-right: 2em;
+            }
+
+            .snsInsta {
+                width: 7vw;
+
+                svg {
+                    aspect-ratio: 1;
+                    fill: $pure-black;
+                }
+            }
+
+            .snsX {
+                width: 6vw;
+
+                svg {
+                    aspect-ratio: 472/483;
+                    fill: $pure-black;
+                }
+            }
+        }
+    }
+
+    .copy {
+        font-size: fs-fluid(10);
+        font-weight: 300;
+        color: #7c5c3a;
+    }
+}

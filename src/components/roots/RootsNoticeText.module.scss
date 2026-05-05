@@ -1,0 +1,23 @@
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsNoticeText スタイル
+ * URL: /src/components/roots/RootsNoticeText.module.scss
+ * Referenced in: /src/components/roots/RootsNoticeText.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsNoticeText {
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 0 $mobile-padding;
+    padding-top: 1em;
+
+    p {
+        color: #9c948c;
+        font-size: fs-fluid(12);
+        line-height: 1.3em;
+    }
+}

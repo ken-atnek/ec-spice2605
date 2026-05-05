@@ -1,191 +1,45 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+
 <!-- END:nextjs-agent-rules -->
 
 ---
 
-## プロジェクト概要
+## 参照順（必須）
 
-Next.js 15 App Router + TypeScript + SCSS による静的サイト生成プロジェクト
-
-## 環境構築
-
-### 初期セットアップ
-
-```bash
-npx create-next-app@latest . --typescript
-# App Router: Yes を選択
-```
-
-### 開発依存パッケージ
-
-```bash
-npm install -D prettier sass stylelint stylelint-config-standard-scss stylelint-scss rimraf cross-env
-```
-
-### next.config.ts
-
-```typescript
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
-  output: 'export', // 静的エクスポート必須
-};
-
-export default nextConfig;
-```
+1. `docs/ROOTS_SPEC.md`
+2. `docs/PAGE_STRUCTURE.md`
+3. `docs/TSX_COMMENT_RULES.md`（`tsx` 編集時）
+4. `docs/rules/project-setup.md`
+5. `docs/rules/coding-style.md`
+6. `docs/rules/nextjs-export.md`
+7. `docs/rules/fetch-pattern.md`
+8. `docs/rules/ui-interactions.md`
+9. `docs/rules/checklist.md`
 
 ---
 
-## コーディング規約
+## 運用ルール
 
-### ファイル種別ごとの命名規則
-
-| ファイル | 命名規則          | 例                                                   |
-| -------- | ----------------- | ---------------------------------------------------- |
-| `.scss`  | ケバブケース      | `.my-button`, `$primary-color`, `@mixin flex-center` |
-| `.tsx`   | キャメル/パスカル | `MyComponent`, `useState`, `handleClick`             |
-
-**理由**: SCSSとTSXで命名規則を混在させない（可読性・保守性向上）
-
----
-
-## Next.js 15 App Router の制約
-
-### ⚠️ 重要: params は Promise型を使わない
-
-**Next.js 15では params が Promise になったが、静的エクスポート時は同期型で扱う**
-
-#### ❌ 公式ドキュメント通り（動的レンダリング用）
-
-```typescript
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params; // 静的エクスポートでエラー
-}
-```
-
-#### ✅ 静的エクスポート用（このプロジェクトの正解）
-
-```typescript
-export default function Page({ params }: { params: { id: string } }) {
-  const { id } = params; // 同期的にアクセス
-}
-```
+- Tailwind CSS は使用しない
+- スタイルは SCSS で実装する
+- 生の `a` タグは使わず、内部遷移は `Link`、外部遷移は `ExternalLink` を使う
+- `src/components/roots` 配下の親ラッパークラスは `root` を避け、`rootsHero` のようにコンポーネント名ベースで命名する
+- `next.config.ts` の `output: 'export'` を維持する
+- `docs` に重要な `.md` を追加したら、この参照順に追記して同期する
+- `docs` に運用上重要な `.md` を追加・更新した場合は、`CLAUDE.md` の参照順にも必ず同期する
 
 ---
 
-### generateMetadata / generateStaticParams
+## AI依頼テンプレ運用（固定）
 
-**静的エクスポート時は async 禁止**
-
-#### ❌ NG
-
-```typescript
-export async function generateMetadata(): Promise<Metadata> {
-  return { title: 'Page' };
-}
-
-export async function generateStaticParams() {
-  return [{ id: '1' }];
-}
-```
-
-#### ✅ OK
-
-```typescript
-export function generateMetadata(): Metadata {
-  return { title: 'Page' };
-}
-
-export function generateStaticParams() {
-  return [{ id: '1' }];
-}
-```
-
-**理由**: `output: 'export'` 時は全て事前生成されるため、非同期処理は不要
-
----
-
-## データ取得パターン
-
-`output: 'export'` のため、ランタイムのサーバーサイド処理は不可。
-管理画面が `public/db/` 配下の JSON を書き換えるため、全データ取得はクライアントサイドで行う。
-
-### `force-dynamic` は使用禁止
-
-```typescript
-// ❌ NG: output: 'export' と競合してビルドエラーになる
-export const dynamic = 'force-dynamic';
-```
-
-### 2種類のfetchパターン
-
-| 用途 | 関数 | エラー表示 | キャッシュ制御 |
-| ---- | ---- | ---------- | -------------- |
-| マスター・設定JSON（空でも支障なし） | `fetchJson()` | なし（fallback値で継続） | なし（デフォルト） |
-| コンテンツJSON（管理画面連動・エラー表示が必要） | 生 `fetch()` | あり（`isError` state） | `cache: 'no-store'` + `?t=${ts}` |
-
-#### ✅ マスター・設定JSON: `fetchJson` を使う
-
-```typescript
-import { fetchJson } from '@/utils/fetchJson';
-import { withBasePath } from '@/utils/withBasePath';
-
-const [items, setItems] = useState<Item[]>([]);
-
-useEffect(() => {
-  fetchJson<Item[]>(withBasePath('/db/master/items.json'), []).then(setItems);
-}, []);
-```
-
-#### ✅ コンテンツJSON（管理画面連動）: 生 `fetch` + `isError` を使う
-
-```typescript
-const [data, setData] = useState<DataType>({ items: [] });
-const [isError, setIsError] = useState(false);
-
-useEffect(() => {
-  const path = withBasePath('/db/content/data.json');
-  const ts = Date.now();
-
-  fetch(`${path}?t=${ts}`, { cache: 'no-store' })
-    .then((res) => {
-      if (!res.ok) throw new Error('fetch failed');
-      return res.json();
-    })
-    .then((json) => setData(json as DataType))
-    .catch(() => setIsError(true));
-}, []);
-
-// JSX内でエラー表示
-{isError ? <p>データの読み込みに失敗しました。</p> : null}
-```
-
-**理由**: `cache: 'no-store'` でブラウザキャッシュを確実に無効化し、管理画面の更新が即時反映される。
-
-### 共有マスター型
-
-マスターJSONの型定義は `src/types/master.ts` に一元管理。各ファイルでローカル定義しない。
-
-```typescript
-import type { SalaryUnitMaster, EmploymentTypeMaster, FacilityTypeMaster } from '@/types/master';
-```
-
----
-
-## チェックリスト
-
-作業開始前に確認:
-
-- [ ] `next.config.ts` に `output: 'export'` がある
-- [ ] page.tsx の params に `Promise` 型を使っていない
-- [ ] `generateMetadata` / `generateStaticParams` が同期関数
-- [ ] `force-dynamic` を使っていない
-- [ ] マスターJSONの型は `src/types/master.ts` からインポートしている
-- [ ] コンテンツJSON取得は生 `fetch` + `cache: 'no-store'` + `isError` パターン
+- 作業前に必ず次の4点を確認する
+  - やりたいこと
+  - 触っていいファイル
+  - ルール（最小修正・大改修しない）
+  - ゴール（完了条件）
+- 実装は最小差分を優先し、一度に大量変更しない
+- TSX変更時は、必要に応じてSCSSもセットで修正する

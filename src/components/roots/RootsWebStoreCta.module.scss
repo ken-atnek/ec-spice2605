@@ -1,0 +1,57 @@
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsWebStoreCta スタイル
+ * URL: /src/components/roots/RootsWebStoreCta.module.scss
+ * Referenced in: /src/components/roots/RootsWebStoreCta.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsWebStoreCta {
+    font-size: inherit;
+    position: relative;
+    padding: 0 $mobile-padding;
+
+    a {
+        background-color: #634628;
+        font-size: inherit;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 1rem;
+        padding: 2.7rem 2.1rem;
+
+        & > div {
+            font-size: inherit;
+            display: flex;
+            flex-direction: column;
+            color: $pure-white;
+            gap: 0.5em 0;
+
+            .lead {
+                font-size: fs-fluid(12);
+
+                @include serif;
+
+                letter-spacing: 0.1em;
+            }
+
+            .title {
+                font-size: fs-fluid(30);
+                line-height: 1;
+                letter-spacing: 0.1em;
+
+                @include cormorant;
+
+                font-weight: 600;
+            }
+        }
+
+        svg {
+            fill: $pure-white;
+            aspect-ratio: 1;
+            width: 7.8rem;
+        }
+    }
+}

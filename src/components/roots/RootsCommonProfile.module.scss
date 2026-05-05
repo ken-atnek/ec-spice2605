@@ -1,0 +1,104 @@
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsCommonProfile スタイル
+ * URL: /src/components/roots/RootsCommonProfile.module.scss
+ * Referenced in: /src/components/roots/RootsCommonProfile.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsCommonProfile {
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 2em $mobile-padding 4em;
+    gap: 3em 0;
+
+    .boxProfile {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        font-size: inherit;
+
+        .meta {
+            font-size: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-bottom: 3em;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 4px;
+                width: 7em;
+                background-color: $main-blown;
+            }
+
+            .shopName {
+                margin: 0;
+                color: $main-red;
+
+                @include cormorant;
+
+                font-size: fs-fluid(16);
+                letter-spacing: 0.1em;
+            }
+
+            .position {
+                font-size: fs-fluid(13);
+                letter-spacing: 0.02em;
+            }
+
+            .name {
+                font-size: fs-fluid(24);
+
+                @include serif;
+
+                font-weight: 500;
+                letter-spacing: 0.14em;
+                margin-top: 0.5em;
+                margin-bottom: 0.3em;
+            }
+
+            .nameEn {
+                @include cormorant;
+
+                font-size: fs-fluid(14);
+                letter-spacing: 0.1em;
+                font-weight: 600;
+            }
+        }
+
+        .illustration {
+            object-fit: contain;
+            font-size: inherit;
+            padding-top: 2em;
+            width: 25vw;
+        }
+    }
+
+    .text {
+        font-size: fs-fluid(16);
+        text-align: justify;
+        line-height: 2em;
+    }
+}
+
+.isInsideTeaser {
+    padding: 2em 0 3em;
+    gap: 2em 0;
+
+    .boxProfile {
+        .meta {
+            padding-bottom: unset;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+}

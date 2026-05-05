@@ -1,0 +1,13 @@
+@mixin svg-bg-base($w, $h) {
+  aspect-ratio: #{$w} / #{$h};
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+// ロゴマーク
+@mixin svg-box-corner($color, $w: 10, $h: 10) {
+  @include svg-bg-base($w, $h);
+
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$w} #{$h}" fill="%23#{$color}"><path d="M10,.02C9.82,0,9.63,0,9.44,0,4.23,0,0,4.23,0,9.44c0,.19,0,.37.02.56h-.02V0h10v.02Z"/></svg>');
+}

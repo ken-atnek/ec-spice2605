@@ -1,0 +1,191 @@
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsStorySectionList スタイル
+ * URL: /src/components/roots/RootsStorySectionList.module.scss
+ * Referenced in: /src/components/roots/RootsStorySectionList.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-05
+ * ======================================= */
+
+.rootsStorySectionList {
+    position: relative;
+    margin-top: 7em;
+    margin-bottom: 5em;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: calc(100% + 3.4rem);
+        height: calc(100% + (3.4rem * 2));
+        translate: -50% -50%;
+        border-radius: 50vw;
+        background-color: #d9d1c7;
+        z-index: 0;
+    }
+
+    .listStory {
+        position: relative;
+        z-index: 1;
+
+        li {
+            position: relative;
+            color: $main-blown;
+            display: flex;
+            flex-direction: column;
+            border-radius: 50vw;
+            border: 1px dashed #9b9084;
+            padding-inline: $mobile-padding;
+            font-size: inherit;
+            padding-bottom: 12em;
+
+            .no {
+                align-self: center;
+                font-size: fs-fluid(24);
+
+                @include serif;
+
+                font-weight: 600;
+            }
+
+            img {
+                border-radius: 1rem;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 33/22;
+                object-fit: cover;
+                margin-top: 4rem;
+            }
+
+            h3 {
+                font-size: inherit;
+                margin-top: 1.6em;
+
+                span {
+                    font-size: fs-fluid(24);
+
+                    @include serif;
+
+                    font-weight: 600;
+                    line-height: 1.3em;
+                    letter-spacing: 0.1em;
+                }
+            }
+
+            .itemText {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                margin-top: 1em;
+
+                p {
+                    font-size: fs-fluid(16);
+                    line-height: 2em;
+                }
+            }
+
+            &:first-of-type {
+                padding-top: 8em;
+                background: linear-gradient(
+                    180deg,
+                    rgb(245 239 233 / 80%) 0%,
+                    rgb(255 255 255 / 80%) 100%
+                );
+
+                .itemH2 {
+                    margin-bottom: 3em;
+
+                    @include item-h2;
+                }
+            }
+
+            &:not(:first-of-type) {
+                padding-top: 10em;
+                margin-top: -6em;
+                background: linear-gradient(
+                    180deg,
+                    rgb(245 239 233 / 80%) 0%,
+                    rgb(255 255 255 / 80%) 100%
+                );
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    translate: -50%;
+                    top: -4rem;
+                    display: block;
+                    width: 3px;
+                    height: 3px;
+                    background-color: #6a5140;
+                    border-radius: 50%;
+                    box-shadow:
+                        0 8px 0 #6a5140,
+                        0 16px 0 #6a5140,
+                        0 24px 0 #6a5140,
+                        0 32px 0 #6a5140,
+                        0 40px 0 #6a5140,
+                        0 48px 0 #6a5140,
+                        0 56px 0 #6a5140,
+                        0 64px 0 #6a5140,
+                        0 72px 0 #6a5140,
+                        0 80px 0 #6a5140;
+                }
+            }
+        }
+    }
+}
+
+.item {
+    border-radius: 160px;
+    border: 1px dashed #c9c1b7;
+    background: #f8f5ef;
+    padding: 24px 12px 22px;
+
+    & + & {
+        margin-top: 20px;
+    }
+
+    .itemH2 {
+        @include item-h2;
+    }
+
+    .no {
+        margin: 0;
+        text-align: center;
+        color: #5a3f2a;
+        font-size: 3.4rem;
+        line-height: 1;
+    }
+
+    .title {
+        margin: 12px 0 0;
+        color: #5a3f2a;
+        font-size: 2.1rem;
+        line-height: 1.6;
+        letter-spacing: 0.03em;
+    }
+
+    .text {
+        margin: 10px 0 0;
+        color: #5a3f2a;
+        font-size: 1.55rem;
+        line-height: 1.9;
+        letter-spacing: 0.02em;
+
+        & + & {
+            margin-top: 0.8em;
+        }
+    }
+
+    .dot {
+        margin: 10px auto 0;
+        width: 8px;
+        color: #9a9187;
+        letter-spacing: 0.2em;
+        line-height: 1;
+        text-align: center;
+    }
+}

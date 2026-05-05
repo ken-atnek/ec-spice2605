@@ -1,0 +1,44 @@
+@use "sass:math";
+
+/* =================================
+ * ウィンドウ・フォントサイズ設定
+ * ------------------------------ */
+
+// MAX-WIDTH宣言
+$m-width: 1024;
+$pc-max-width: calc($m-width * 1px);
+
+// フォントサイズ(mx1000)
+$max-font: 16;
+$min-font: 12;
+$sp-width: 375;
+
+// 可変フォントサイズ計算（Sass math で数値として扱う）
+$tilt: math.div($max-font - $min-font, $m-width - $sp-width);
+$slice: $min-font - ($tilt * $sp-width);
+$base-vw: $tilt * 100;
+
+// レガシー互換フォント関数（既存コード用）
+// 新規実装では fs-fluid() + up-* ブレイクポイントを優先する
+@function fz($size) {
+  @if $size <= $min-font {
+    @return $min-font * 1px;
+  } @else {
+    @return max(12px, math.div($size, $max-font) * 1em);
+  }
+}
+
+// 390px幅基準の可変値（例: vw390(32)）
+@function vw390($px) {
+  @return math.div($px, 390) * 100vw;
+}
+
+// モバイルファースト向け可変値（基準幅は390px）
+// 例: font-size: fs-fluid(32);
+@function fs-fluid($px, $base: 390) {
+  @return calc(#{$px} / #{$base} * 100vw);
+}
+
+$article-max-width: 1086px;
+$section-aspect: math.div(1366, 1024);
+$mobile-padding: 7.43vw;

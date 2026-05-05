@@ -1,0 +1,70 @@
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsInfoSection スタイル
+ * URL: /src/components/roots/RootsInfoSection.module.scss
+ * Referenced in: /src/components/roots/RootsInfoSection.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.rootsInfoSection {
+    display: flex;
+    flex-direction: column;
+    color: $main-blown;
+    padding: 6em $mobile-padding 4em;
+
+    article {
+        background-color: #eaeaea;
+        padding-top: 4em;
+        padding-bottom: 6em;
+        padding-inline: 2em;
+        border-radius: 1rem;
+
+        .itemH2 {
+            @include item-h2;
+        }
+
+        dl {
+            position: relative;
+            display: flex;
+            font-size: inherit;
+            flex-direction: column;
+            gap: 2em 0;
+            margin-top: 3em;
+
+            div {
+                font-size: inherit;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em 0;
+
+                dt {
+                    font-size: fs-fluid(14);
+                    font-weight: 700;
+                }
+
+                dd {
+                    font-size: inherit;
+                    display: flex;
+                    flex-direction: column;
+
+                    span {
+                        font-size: fs-fluid(14);
+                        line-height: 1.6em;
+                    }
+
+                    .linkMap {
+                        background-color: #b2aba1;
+                        color: $pure-white;
+                        align-self: flex-start;
+                        font-size: fs-fluid(16);
+                        padding: 0.7em 3em;
+                        border-radius: 100vmax;
+                        margin-top: 0.5em;
+                    }
+                }
+            }
+        }
+    }
+}

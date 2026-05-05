@@ -1,0 +1,125 @@
+@use "../../styles/foundation/" as *;
+
+/* =======================================
+ * 熊日すぱいす ROOTS RootsHeaderMenu スタイル
+ * URL: /src/components/roots/RootsHeaderMenu.module.scss
+ * Referenced in: /src/components/roots/RootsHeaderMenu.tsx
+ * Created: 2026-05-02
+ * Last updated: 2026-05-02
+ * ======================================= */
+
+.hamburgerButton {
+    position: fixed;
+    top: 4vw;
+    right: 4vw;
+    width: 53px;
+    height: 53px;
+    border-radius: 1rem;
+    z-index: 90;
+    background-color: $main-red;
+    color: $pure-white;
+
+    span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 1px;
+        background-color: $pure-white;
+        transition: 0.3s ease-out;
+
+        &:nth-of-type(1) {
+            translate: -50% calc(-50% - 5px);
+        }
+
+        &:nth-of-type(2) {
+            translate: -50% -50%;
+        }
+
+        &:nth-of-type(3) {
+            translate: -50% calc(-50% + 5px);
+        }
+    }
+
+    &.is-open {
+        span {
+            &:nth-of-type(1) {
+                translate: -50% -50%;
+                rotate: 45deg;
+            }
+
+            &:nth-of-type(2) {
+                opacity: 0;
+            }
+
+            &:nth-of-type(3) {
+                translate: -50% -50%;
+                rotate: -45deg;
+            }
+        }
+    }
+}
+
+.containerHeader {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    background-color: $main-white;
+    pointer-events: none;
+    opacity: 0;
+    translate: 100vw;
+    transition: 0.3s ease-out;
+    padding: 16vw 0 0;
+    font-size: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 8vw 0;
+
+    &.is-open {
+        opacity: 1;
+        pointer-events: auto;
+        translate: 0;
+    }
+
+    nav {
+        display: grid;
+        gap: 36px;
+        justify-items: center;
+        font-size: inherit;
+
+        a {
+            color: $main-blown;
+            text-align: center;
+            font-size: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8em 0;
+
+            .en {
+                position: relative;
+                font-size: fs-fluid(32);
+
+                @include cormorant;
+
+                font-weight: 700;
+                letter-spacing: 0.1em;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    translate: -50%;
+                    height: 1px;
+                    width: 2em;
+                    top: calc(100% + 0.15em);
+                    background-color: $main-blown;
+                }
+            }
+
+            .ja {
+                font-size: fs-fluid(14);
+                letter-spacing: 0.02em;
+            }
+        }
+    }
+}
