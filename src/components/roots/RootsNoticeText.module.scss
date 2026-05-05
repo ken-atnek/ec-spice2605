@@ -12,8 +12,9 @@
     display: flex;
     flex-direction: column;
     color: $main-blown;
-    padding: 0 $mobile-padding 0;
+    padding: 0 $mobile-padding;
     padding-top: 1em;
+
     p {
         color: #9c948c;
         font-size: fs-fluid(12);

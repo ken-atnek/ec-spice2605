@@ -13,9 +13,11 @@
     flex-direction: column;
     color: $main-blown;
     padding: 0 $mobile-padding 4em;
+
     .itemH2 {
-        @include itemH2;
+        @include item-h2;
     }
+
     .boxContents {
         font-size: inherit;
         display: flex;
@@ -24,27 +26,33 @@
         color: $main-red;
         padding: 2em 1em;
         margin-top: 2em;
+
         h3 {
             font-size: fs-fluid(24);
         }
+
         img {
             aspect-ratio: 1;
             object-fit: cover;
             font-size: inherit;
             margin-top: 0.8em;
         }
+
         .wrapDetails {
             position: relative;
             font-size: inherit;
             padding-inline: 1em;
+
             h4 {
                 font-size: fs-fluid(18);
                 font-weight: 500;
             }
+
             .itemText {
                 font-size: inherit;
                 display: flex;
                 flex-direction: column;
+
                 p {
                     font-size: fs-fluid(16);
                     line-height: 2em;
@@ -80,6 +88,7 @@
     color: #cf1f24;
     font-size: 1.9rem;
     line-height: 1.9;
+
     & + & {
         margin-top: 0.8em;
     }

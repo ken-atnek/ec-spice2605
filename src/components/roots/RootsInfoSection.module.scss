@@ -13,15 +13,18 @@
     flex-direction: column;
     color: $main-blown;
     padding: 6em $mobile-padding 4em;
+
     article {
         background-color: #eaeaea;
         padding-top: 4em;
         padding-bottom: 6em;
         padding-inline: 2em;
         border-radius: 1rem;
+
         .itemH2 {
-            @include itemH2;
+            @include item-h2;
         }
+
         dl {
             position: relative;
             display: flex;
@@ -29,15 +32,18 @@
             flex-direction: column;
             gap: 2em 0;
             margin-top: 3em;
+
             div {
                 font-size: inherit;
                 display: flex;
                 flex-direction: column;
                 gap: 0.5em 0;
+
                 dt {
                     font-size: fs-fluid(14);
                     font-weight: 700;
                 }
+
                 dd {
                     font-size: inherit;
                     display: flex;
@@ -45,9 +51,9 @@
 
                     span {
                         font-size: fs-fluid(14);
-
                         line-height: 1.6em;
                     }
+
                     .linkMap {
                         background-color: #b2aba1;
                         color: $pure-white;

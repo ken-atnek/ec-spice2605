@@ -10,47 +10,57 @@
 
 .rootsHero {
     padding: 3vw 3vw 0;
+
     .logoCard {
         position: absolute;
         top: 3vw;
         left: 0;
         width: 28vw;
         padding: 8px 0 1rem;
-        border-radius: 0 0 1rem 0;
+        border-radius: 0 0 1rem;
         background: #fff;
         z-index: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 4px 0;
+
         // z-index: 1;
         &::before,
         &::after {
             content: "";
             position: absolute;
             width: 1rem;
+
             @include svg-box-corner("fff");
+
             z-index: 10;
         }
+
         &::before {
             top: 0;
             left: calc(100% - 1px);
         }
+
         &::after {
             top: calc(100% - 1px);
             left: 3vw;
         }
+
         span {
             @include serif;
+
             font-size: 12px;
             letter-spacing: 0.04em;
         }
     }
+
     .boxContents {
         position: relative;
         aspect-ratio: 362 / 520;
-        border-radius: 0 1rem 1rem 1rem;
+        border-radius: 0 1rem 1rem;
         overflow: hidden;
+
         &::after {
             content: "";
             position: absolute;
@@ -58,15 +68,17 @@
             border-radius: 10px;
             background: linear-gradient(
                 180deg,
-                rgba(51, 38, 26, 0) 63.46%,
-                rgba(51, 38, 26, 0.7) 100%
+                rgb(51 38 26 / 0%) 63.46%,
+                rgb(51 38 26 / 70%) 100%
             );
         }
+
         .heroImage {
             object-fit: cover;
             object-position: center;
             position: relative;
         }
+
         .catchCopy {
             position: absolute;
             left: 20px;
@@ -75,9 +87,12 @@
             margin: 0;
             color: #fff;
             font-size: fs-fluid(24);
+
             @include serif;
+
             line-height: 1.45;
             letter-spacing: 0.14em;
+
             span {
                 display: block;
             }

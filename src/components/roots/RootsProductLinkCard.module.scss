@@ -12,22 +12,25 @@
     display: flex;
     flex-direction: column;
     color: $main-blown;
-    padding: 0 $mobile-padding 0;
+    padding: 0 $mobile-padding;
     margin-top: 5em;
     margin-bottom: 5em;
+
     a {
         background-color: $pure-white;
-        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 8px 0 rgb(0 0 0 / 20%);
         border-radius: 1rem;
         padding: 1rem;
         width: 60vw;
         align-self: center;
         position: relative;
+
         img {
             aspect-ratio: 1;
             object-fit: cover;
             border-radius: 1rem;
         }
+
         p {
             color: $pure-white;
             position: absolute;
@@ -39,13 +42,15 @@
             font-weight: 600;
             width: calc(100% - 2rem);
             text-align: center;
+
             @include serif;
+
             padding-top: 4rem;
             padding-bottom: 1.6rem;
             background: linear-gradient(
                 180deg,
-                rgba(99, 70, 40, 0) 34.68%,
-                rgba(99, 70, 40, 0.85) 100%
+                rgb(99 70 40 / 0%) 34.68%,
+                rgb(99 70 40 / 85%) 100%
             );
         }
     }

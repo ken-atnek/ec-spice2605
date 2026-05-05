@@ -14,18 +14,22 @@
     color: $main-blown;
     padding: 4em $mobile-padding 3em;
     gap: 2em 0;
+
     article {
         font-size: inherit;
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 0 3em;
+
         .itemLogo {
             width: 20vw;
+
             img {
                 width: 100%;
             }
         }
+
         nav {
             position: relative;
             font-size: inherit;
@@ -33,6 +37,7 @@
             align-items: center;
             gap: 0 1em;
             flex: 1;
+
             &::before {
                 content: "";
                 height: 1px;
@@ -40,15 +45,19 @@
                 flex: 1;
                 margin-right: 2em;
             }
+
             .snsInsta {
                 width: 7vw;
+
                 svg {
                     aspect-ratio: 1;
                     fill: $pure-black;
                 }
             }
+
             .snsX {
                 width: 6vw;
+
                 svg {
                     aspect-ratio: 472/483;
                     fill: $pure-black;
@@ -56,6 +65,7 @@
             }
         }
     }
+
     .copy {
         font-size: fs-fluid(10);
         font-weight: 300;

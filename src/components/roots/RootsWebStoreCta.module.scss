@@ -12,6 +12,7 @@
     font-size: inherit;
     position: relative;
     padding: 0 $mobile-padding;
+
     a {
         background-color: #634628;
         font-size: inherit;
@@ -20,25 +21,33 @@
         align-items: center;
         border-radius: 1rem;
         padding: 2.7rem 2.1rem;
+
         & > div {
             font-size: inherit;
             display: flex;
             flex-direction: column;
             color: $pure-white;
             gap: 0.5em 0;
+
             .lead {
                 font-size: fs-fluid(12);
+
                 @include serif;
+
                 letter-spacing: 0.1em;
             }
+
             .title {
                 font-size: fs-fluid(30);
                 line-height: 1;
                 letter-spacing: 0.1em;
+
                 @include cormorant;
+
                 font-weight: 600;
             }
         }
+
         svg {
             fill: $pure-white;
             aspect-ratio: 1;
