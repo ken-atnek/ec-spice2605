@@ -3,7 +3,7 @@
  * URL: /src/components/roots/RootsStorySectionList.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-02
- * Last updated: 2026-05-02
+ * Last updated: 2026-05-05
  * ======================================= */
 import Image from 'next/image';
 import styles from './RootsStorySectionList.module.scss';
