@@ -41,7 +41,8 @@ function RootsContent() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id'); // "roots_001"
   const page = searchParams.get('page'); // "story" | null
-  const folderId = id?.replace('roots_', ''); // "001" (JSONフォルダ名)
+  const rootsId = id || 'roots_001';
+  const folderId = rootsId.replace('roots_', ''); // "001" (JSONフォルダ名)
   const isStoryPage = page === 'story';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -126,12 +127,12 @@ function RootsContent() {
     {
       en: 'STORY',
       ja: '人物ストーリー',
-      href: `/roots?id=roots_${folderId}&page=story#story`,
+      href: `/roots?id=${rootsId}&page=story`,
     },
     {
       en: 'CRAFT',
       ja: '商品へのこだわり',
-      href: `/roots?id=roots_${folderId}#craft`,
+      href: `/roots?id=${rootsId}`,
     },
     { en: 'INFO.', ja: 'お店情報', href: `#info` },
     { en: 'EVENT', ja: 'イベント', href: `#event` },
