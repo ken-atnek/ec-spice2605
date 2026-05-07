@@ -20,6 +20,7 @@ import RootsNoticeText from '@/components/roots/RootsNoticeText';
 import RootsStorySectionList from '@/components/roots/RootsStorySectionList';
 import RootsProductLinkCard from '@/components/roots/RootsProductLinkCard';
 import RootsHeaderMenu from '@/components/roots/RootsHeaderMenu';
+import RootsImageListSection from '@/components/roots/RootsImageListSection';
 import {
   fetchCommonData,
   fetchEventsData,
@@ -54,23 +55,19 @@ function RootsContent() {
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // ページ種別に応じて商品 or ストーリーのJSONをfetch
+  // 商品・ストーリー両方のJSONをfetch（画像リストで両heroを使う）
   useEffect(() => {
     if (!folderId) return;
-    if (isStoryPage) {
-      fetchStoryPage(folderId)
-        .then(setStoryPage)
-        .catch((error) => {
-          setIsError(true);
-          setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
-        });
-      return;
-    }
-    fetchProductPage(folderId)
-      .then(setProductPage)
+    Promise.all([fetchProductPage(folderId), fetchStoryPage(folderId)])
+      .then(([product, story]) => {
+        setProductPage(product);
+        setStoryPage(story);
+      })
       .catch((error) => {
         setIsError(true);
-        setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
+        setErrorMessage(
+          error instanceof Error ? error.message : 'fetch failed'
+        );
       });
   }, [folderId, isStoryPage]);
 
@@ -81,7 +78,9 @@ function RootsContent() {
       .then(setCommonData)
       .catch((error) => {
         setIsError(true);
-        setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
+        setErrorMessage(
+          error instanceof Error ? error.message : 'fetch failed'
+        );
       });
   }, [folderId]);
 
@@ -91,7 +90,9 @@ function RootsContent() {
       .then(setInfoData)
       .catch((error) => {
         setIsError(true);
-        setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
+        setErrorMessage(
+          error instanceof Error ? error.message : 'fetch failed'
+        );
       });
   }, [folderId]);
 
@@ -101,7 +102,9 @@ function RootsContent() {
       .then(setEventsData)
       .catch((error) => {
         setIsError(true);
-        setErrorMessage(error instanceof Error ? error.message : 'fetch failed');
+        setErrorMessage(
+          error instanceof Error ? error.message : 'fetch failed'
+        );
       });
   }, [folderId]);
 
@@ -185,10 +188,27 @@ function RootsContent() {
             />
           </div>
         ) : null}
+        <RootsImageListSection
+          portraitImages={[storyHeroImage, productPage?.hero.image || '']}
+          squareImages={[
+            ...(storyPage?.sections?.map((section) => section.image) || []),
+            ...(productPage?.items.flatMap((item) =>
+              (item.contentBlocks || [])
+                .filter((block) => block.type === 'image' && block.src)
+                .map((block) => block.src || '')
+            ) || []),
+          ]}
+          landscapeImages={[
+            commonData.productLinkImage || '',
+            productPage?.personStoryImage || '',
+            ...(productPage?.items.map((item) => item.image) || []),
+          ]}
+        />
         {webStoreSection}
         {commonData?.commonNotice ? (
           <RootsNoticeText text={commonData.commonNotice} />
         ) : null}
+
         <RootsFooter />
       </>
     );
@@ -259,10 +279,27 @@ function RootsContent() {
           />
         </div>
       ) : null}
+      <RootsImageListSection
+        portraitImages={[productPage.hero.image, storyPage?.hero?.image || '']}
+        squareImages={[
+          ...productPage.items.flatMap((item) =>
+            (item.contentBlocks || [])
+              .filter((block) => block.type === 'image' && block.src)
+              .map((block) => block.src || '')
+          ),
+          ...(storyPage?.sections?.map((section) => section.image) || []),
+        ]}
+        landscapeImages={[
+          productPage.personStoryImage || '',
+          ...productPage.items.map((item) => item.image),
+          commonData.productLinkImage || '',
+        ]}
+      />
       {webStoreSection}
       {commonData?.commonNotice ? (
         <RootsNoticeText text={commonData.commonNotice} />
       ) : null}
+
       <RootsFooter />
     </>
   );

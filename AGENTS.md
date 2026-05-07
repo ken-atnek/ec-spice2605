@@ -12,13 +12,14 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 1. `docs/ROOTS_SPEC.md`
 2. `docs/PAGE_STRUCTURE.md`
-3. `docs/TSX_COMMENT_RULES.md`（`tsx` 編集時）
-4. `docs/rules/project-setup.md`
-5. `docs/rules/coding-style.md`
-6. `docs/rules/nextjs-export.md`
-7. `docs/rules/fetch-pattern.md`
-8. `docs/rules/ui-interactions.md`
-9. `docs/rules/checklist.md`
+3. `docs/ROOTS_IMAGE_LIST_SPEC.md`
+4. `docs/rules/front-rules/tsx-comment-rules.md`（`tsx` 編集時）
+5. `docs/rules/front-rules/project-setup.md`
+6. `docs/rules/front-rules/coding-style.md`
+7. `docs/rules/front-rules/nextjs-export.md`
+8. `docs/rules/front-rules/fetch-pattern.md`
+9. `docs/rules/front-rules/ui-interactions.md`
+10. `docs/rules/front-rules/checklist.md`
 
 ---
 
