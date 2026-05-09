@@ -1,8 +1,13 @@
 {
   "extends": ["stylelint-config-standard-scss"],
   "rules": {
-    "rule-empty-line-before": null,
-    "scss/double-slash-comment-empty-line-before": null
+    "rule-empty-line-before": "never",
+    "at-rule-empty-line-before": "never",
+    "declaration-empty-line-before": "never",
+    "comment-empty-line-before": "never",
+    "custom-property-empty-line-before": "never",
+    "scss/double-slash-comment-empty-line-before": "never",
+    "scss/dollar-variable-empty-line-before": "never"
   },
   "overrides": [
     {

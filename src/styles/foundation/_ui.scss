@@ -3,7 +3,6 @@
 @use "./settings" as *;
 @use "./breakpoints" as *;
 @use "./typography" as *;
-
 /* =========================================
 タイトルH2
 ----------------------------------------- */
@@ -14,17 +13,19 @@
     flex-direction: column;
     align-items: center;
     gap: 1.8em 0;
-
+    @include up-tb {
+        gap: 1em 0;
+    }
     span {
         position: relative;
-
         @include cormorant;
-
         font-size: fs-fluid(32);
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-
+        @include up-tb {
+            font-size: fz(36);
+        }
         &::after {
             content: "";
             position: absolute;
@@ -36,26 +37,25 @@
             top: calc(100% + 0.2em);
         }
     }
-
     h2 {
         font-size: fs-fluid(13);
+        @include up-tb {
+            font-size: fz(14);
+        }
     }
 }
-
 /* =========================================
 ドロップシャドウ
 ----------------------------------------- */
 @mixin drop-shadow {
     box-shadow: 2px 2px 3px 0 rgb(53 45 32 / 15%);
 }
-
 @mixin flex-center($direction: row) {
     display: flex;
     flex-direction: $direction;
     align-items: center;
     justify-content: center;
 }
-
 @mixin border-gradient {
     background-image: repeating-linear-gradient(
         to right,
@@ -64,7 +64,6 @@
         #efefef 159px,
         #efefef 160px
     );
-
     @include sp {
         background-image: repeating-linear-gradient(
             to right,

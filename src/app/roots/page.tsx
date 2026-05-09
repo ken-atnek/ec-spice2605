@@ -4,21 +4,17 @@
  * URL: /src/app/roots/page.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-04-04
- * Last updated: 2026-05-01
+ * Last updated: 2026-05-09
  * ======================================= */
 import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import RootsHero from '@/components/roots/RootsHero';
-import RootsCommonProfile from '@/components/roots/RootsCommonProfile';
-import RootsWebStoreCta from '@/components/roots/RootsWebStoreCta';
+import RootsLeadSection from '@/components/roots/RootsLeadSection';
 import RootsCraftSection from '@/components/roots/RootsCraftSection';
 import RootsStoryTeaser from '@/components/roots/RootsStoryTeaser';
 import RootsInfoSection from '@/components/roots/RootsInfoSection';
 import RootsEventSection from '@/components/roots/RootsEventSection';
 import RootsFooter from '@/components/roots/RootsFooter';
-import RootsNoticeText from '@/components/roots/RootsNoticeText';
 import RootsStorySectionList from '@/components/roots/RootsStorySectionList';
-import RootsProductLinkCard from '@/components/roots/RootsProductLinkCard';
 import RootsHeaderMenu from '@/components/roots/RootsHeaderMenu';
 import RootsImageListSection from '@/components/roots/RootsImageListSection';
 import {
@@ -109,20 +105,6 @@ function RootsContent() {
       });
   }, [folderId]);
 
-  // 両ページで共通して表示するプロフィールセクション
-  const commonSection = commonData ? (
-    <RootsCommonProfile
-      shopName={commonData.shopName}
-      position={commonData.position}
-      name={commonData.name}
-      nameEn={commonData.nameEn}
-      pageText={commonData.pageText}
-      illustration={commonData.illustration}
-    />
-  ) : null;
-  const webStoreSection = commonData?.onlineShopUrl ? (
-    <RootsWebStoreCta url={commonData.onlineShopUrl} />
-  ) : null;
   const menuItems = [
     {
       en: 'STORY',
@@ -154,20 +136,21 @@ function RootsContent() {
           items={menuItems}
           webStoreUrl={commonData?.onlineShopUrl}
         />
-        <RootsHero image={storyHeroImage} catchCopy={storyHeroText} />
-        {commonSection}
+        <RootsLeadSection
+          heroImage={storyHeroImage}
+          heroCatchCopy={storyHeroText}
+          commonData={commonData}
+        />
         {storyPage?.sections && storyPage.sections.length > 0 ? (
           <div id="story">
-            <RootsStorySectionList sections={storyPage.sections} />
+            <RootsStorySectionList
+              sections={storyPage.sections}
+              commonData={commonData}
+              productLinkHref={`/roots?id=roots_${folderId}`}
+              showWebStore
+            />
           </div>
         ) : null}
-        {commonData.productLinkImage ? (
-          <RootsProductLinkCard
-            href={`/roots?id=roots_${folderId}`}
-            image={commonData.productLinkImage}
-          />
-        ) : null}
-        {webStoreSection}
         {infoData ? (
           <div id="info">
             <RootsInfoSection
@@ -204,11 +187,9 @@ function RootsContent() {
             productPage?.personStoryImage || '',
             ...(productPage?.items.map((item) => item.image) || []),
           ]}
+          webStoreUrl={commonData.onlineShopUrl}
+          commonNotice={commonData.commonNotice}
         />
-        {webStoreSection}
-        {commonData?.commonNotice ? (
-          <RootsNoticeText text={commonData.commonNotice} />
-        ) : null}
 
         <RootsFooter />
       </>
@@ -228,12 +209,12 @@ function RootsContent() {
         items={menuItems}
         webStoreUrl={commonData?.onlineShopUrl}
       />
-      <RootsHero
-        image={productPage.hero.image}
-        catchCopy={productPage.hero.text}
+      <RootsLeadSection
+        heroImage={productPage.hero.image}
+        heroCatchCopy={productPage.hero.text}
+        commonData={commonData}
+        showWebStore
       />
-      {commonSection}
-      {webStoreSection}
       <div id="craft">
         <RootsCraftSection
           mainTitle={productPage.main.title}
@@ -243,9 +224,9 @@ function RootsContent() {
           }
           ecUrl={productPage.ecUrl}
           items={productPage.items}
+          webStoreUrl={commonData.onlineShopUrl}
         />
       </div>
-      {webStoreSection}
       {productPage.personStoryImage ? (
         <RootsStoryTeaser
           image={productPage.personStoryImage}
@@ -256,9 +237,9 @@ function RootsContent() {
           nameEn={commonData.nameEn}
           pageText={commonData.pageText}
           illustration={commonData.illustration}
+          webStoreUrl={commonData.onlineShopUrl}
         />
       ) : null}
-      {webStoreSection}
       {infoData ? (
         <div id="info">
           <RootsInfoSection
@@ -295,11 +276,9 @@ function RootsContent() {
           ...productPage.items.map((item) => item.image),
           commonData.productLinkImage || '',
         ]}
+        webStoreUrl={commonData.onlineShopUrl}
+        commonNotice={commonData.commonNotice}
       />
-      {webStoreSection}
-      {commonData?.commonNotice ? (
-        <RootsNoticeText text={commonData.commonNotice} />
-      ) : null}
 
       <RootsFooter />
     </>

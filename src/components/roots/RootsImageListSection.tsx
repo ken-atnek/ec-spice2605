@@ -7,16 +7,20 @@
  * ======================================= */
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import type { Splide as SplideInstance } from '@splidejs/splide';
 import '@splidejs/react-splide/css';
+import RootsWebStoreCta from '@/components/roots/RootsWebStoreCta';
 import styles from './RootsImageListSection.module.scss';
 
 type Props = {
   portraitImages: string[];
   squareImages: string[];
   landscapeImages: string[];
+  webStoreUrl?: string;
+  commonNotice?: string;
 };
 
 const pickImages = (sources: string[], count: number): string[] => {
@@ -35,6 +39,8 @@ export default function RootsImageListSection({
   portraitImages,
   squareImages,
   landscapeImages,
+  webStoreUrl,
+  commonNotice,
 }: Props) {
   const pickedPortrait = useMemo(
     () => pickImages(portraitImages, 1),
@@ -49,6 +55,20 @@ export default function RootsImageListSection({
     [landscapeImages]
   );
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const className = 'is-roots-image-modal-open';
+    if (activeIndex !== null) {
+      document.body.classList.add(className);
+    } else {
+      document.body.classList.remove(className);
+    }
+
+    return () => {
+      document.body.classList.remove(className);
+    };
+  }, [activeIndex]);
 
   if (pickedPortrait.length === 0) return null;
 
@@ -69,7 +89,10 @@ export default function RootsImageListSection({
             key={`${entry.src}-${index}`}
             type="button"
             className={`${styles.gridItem} ${entry.slot}`}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {
+              setActiveIndex(index);
+              setCurrentIndex(index);
+            }}
             aria-label="画像を拡大表示"
           >
             <Image
@@ -82,6 +105,14 @@ export default function RootsImageListSection({
           </button>
         ))}
       </article>
+      {webStoreUrl ? (
+        <div className={styles.boxStoreLink}>
+          <RootsWebStoreCta url={webStoreUrl} />{' '}
+        </div>
+      ) : null}
+      {commonNotice ? (
+        <p className={styles.storeNotice}>{commonNotice}</p>
+      ) : null}
 
       {activeIndex !== null ? (
         <div className={styles.blockModal} onClick={() => setActiveIndex(null)}>
@@ -91,6 +122,15 @@ export default function RootsImageListSection({
           >
             <Splide
               key={`modal-${activeIndex}-${displayImages.length}`}
+              onMove={(
+                _splide: SplideInstance,
+                newIndex: number
+              ) => {
+                const normalized =
+                  ((newIndex % displayImages.length) + displayImages.length) %
+                  displayImages.length;
+                setCurrentIndex(normalized);
+              }}
               options={{
                 type: 'loop',
                 perPage: 1,
@@ -99,13 +139,25 @@ export default function RootsImageListSection({
                 pagination: false,
                 drag: true,
                 speed: 500,
-                gap: '0.8rem',
+                gap: 0,
                 padding: '6%',
+                mediaQuery: 'min',
+                breakpoints: {
+                  835: {
+                    padding: '25%',
+                    gap: 20,
+                  },
+                },
               }}
               aria-label="画像カルーセル"
             >
               {displayImages.map((item, index) => (
-                <SplideSlide key={`${item.src}-${index}`}>
+                <SplideSlide
+                  key={`${item.src}-${index}`}
+                  className={
+                    index === currentIndex ? styles.slideActive : styles.slideSub
+                  }
+                >
                   <Image
                     src={item.src}
                     alt="拡大画像"

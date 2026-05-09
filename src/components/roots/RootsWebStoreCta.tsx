@@ -5,27 +5,25 @@
  * Created: 2026-05-02
  * Last updated: 2026-05-02
  * ======================================= */
-import styles from "./RootsWebStoreCta.module.scss";
-import ExternalLink from "@/components/common/ExternalLink";
+import styles from './RootsWebStoreCta.module.scss';
+import ExternalLink from '@/components/common/ExternalLink';
 
 type Props = {
   url: string;
   onClick?: () => void;
 };
 
-export default function RootsWebStoreCta({ url, onClick }: Props) {
+export default function ItemWebStore({ url, onClick }: Props) {
   return (
-    <section className={styles.rootsWebStoreCta}>
-      <ExternalLink href={url} onClick={onClick}>
-        <div>
-          <p className={styles.lead}>ご購入はこちら</p>
-          <p className={styles.title}>WEB STORE</p>
-        </div>
-        <svg role="img" aria-labelledby="logoTitle">
-          <title id="logoTitle">カートアイコン</title>
-          <use href="#svgCart" />
-        </svg>
-      </ExternalLink>
-    </section>
+    <ExternalLink href={url} onClick={onClick} className={styles.itemWebStore}>
+      <div>
+        <p className={styles.lead}>ご購入はこちら</p>
+        <p className={styles.title}>WEB STORE</p>
+      </div>
+      <svg role="img" aria-labelledby="logoTitle">
+        <title id="logoTitle">カートアイコン</title>
+        <use href="#svgCart" />
+      </svg>
+    </ExternalLink>
   );
 }

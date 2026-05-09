@@ -36,46 +36,50 @@ export default function RootsInfoSection({
           <h2>お店情報</h2>
         </div>
         <dl>
-          <div>
-            <dt>店名</dt>
-            <dd>
-              <span>{infoShopName}</span>
-            </dd>
+          <div className={styles.itemWrap}>
+            <div>
+              <dt>店名</dt>
+              <dd>
+                <span>{infoShopName}</span>
+              </dd>
+            </div>
+            <div>
+              <dt>場所</dt>
+              <dd>
+                {placeLines.map((line, index) => (
+                  <span key={`${line}-${index}`}>{line}</span>
+                ))}
+                <ExternalLink href={mapUrl} className={styles.linkMap}>
+                  google map
+                </ExternalLink>
+              </dd>
+            </div>
           </div>
-          <div>
-            <dt>場所</dt>
-            <dd>
-              {placeLines.map((line, index) => (
-                <span key={`${line}-${index}`}>{line}</span>
-              ))}
-              <ExternalLink href={mapUrl} className={styles.linkMap}>
-                google map
-              </ExternalLink>
-            </dd>
-          </div>
-          <div>
-            <dt>営業時間</dt>
-            <dd>
-              {businessHours.map((line, index) => (
-                <span key={`${line}-${index}`} className={styles.value}>
-                  {line}
-                </span>
-              ))}
-            </dd>
-          </div>
-          <div>
-            <dt>電話</dt>
-            <dd>
-              {telLines.map((line, index) => (
-                <span key={`${line}-${index}`}>{line}</span>
-              ))}
-            </dd>
-          </div>
-          <div>
-            <dt>休日</dt>
-            <dd>
-              <span>{holiday}</span>
-            </dd>
+          <div className={styles.itemWrap}>
+            <div>
+              <dt>営業時間</dt>
+              <dd>
+                {businessHours.map((line, index) => (
+                  <span key={`${line}-${index}`} className={styles.value}>
+                    {line}
+                  </span>
+                ))}
+              </dd>
+            </div>
+            <div>
+              <dt>電話</dt>
+              <dd>
+                {telLines.map((line, index) => (
+                  <span key={`${line}-${index}`}>{line}</span>
+                ))}
+              </dd>
+            </div>
+            <div>
+              <dt>休日</dt>
+              <dd>
+                <span>{holiday}</span>
+              </dd>
+            </div>
           </div>
         </dl>
       </article>
