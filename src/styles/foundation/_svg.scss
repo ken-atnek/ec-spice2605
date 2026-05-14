@@ -17,3 +17,8 @@
     background-size: contain;
     background-position: center center;
 }
+// →矢印アイコン
+@mixin svg-arrow-bottom($color, $w: 16, $h: 7) {
+    @include svg-bg-base($w, $h);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$w} #{$h}" fill="%23#{$color}"><path d="M16 0.687994L8.26359 6.79139L8 7L7.73641 6.79139L0 0.687994L0.527177 0L8 5.89478L15.4728 0L16 0.687994Z"/></svg>');
+}

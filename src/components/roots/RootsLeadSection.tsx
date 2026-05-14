@@ -6,6 +6,7 @@
  * Last updated: 2026-05-09
  * ======================================= */
 import Image from 'next/image';
+import Link from 'next/link';
 import RootsCommonProfile from '@/components/roots/RootsCommonProfile';
 import RootsWebStoreCta from '@/components/roots/RootsWebStoreCta';
 import type { CommonData } from '@/lib/roots/fetchRootsData';
@@ -16,6 +17,7 @@ type Props = {
   heroCatchCopy: string[];
   commonData: CommonData;
   showWebStore?: boolean;
+  showEventAnchor?: boolean;
 };
 
 export default function RootsLeadSection({
@@ -23,6 +25,7 @@ export default function RootsLeadSection({
   heroCatchCopy,
   commonData,
   showWebStore = false,
+  showEventAnchor = false,
 }: Props) {
   return (
     <section className={styles.rootsLeadSection}>
@@ -66,6 +69,19 @@ export default function RootsLeadSection({
         <div className={styles.boxStoreLink}>
           {showWebStore && commonData.onlineShopUrl ? (
             <RootsWebStoreCta url={commonData.onlineShopUrl} />
+          ) : null}
+          {showEventAnchor ? (
+            <Link href="#event" className={styles.anchorEvent}>
+              <div className={styles.itemImage}>
+                <Image
+                  src="/db/roots/images/001/event.jpg"
+                  alt="シュークリーム画像 "
+                  width={70}
+                  height={70}
+                />
+              </div>
+              <p>江津店リニューアルイベント</p>
+            </Link>
           ) : null}
         </div>
       </article>

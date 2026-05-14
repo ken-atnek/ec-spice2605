@@ -21,7 +21,6 @@ export default function RootsEventSection({ image, title, text }: Props) {
         <span>event</span>
         <h2>イベント</h2>
       </div>
-
       <div className={styles.boxContents}>
         <h3>Shop Event</h3>
         <Image src={image} alt={title} width={1200} height={900} />

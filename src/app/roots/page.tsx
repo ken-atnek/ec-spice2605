@@ -140,6 +140,7 @@ function RootsContent() {
           heroImage={storyHeroImage}
           heroCatchCopy={storyHeroText}
           commonData={commonData}
+          showEventAnchor
         />
         {storyPage?.sections && storyPage.sections.length > 0 ? (
           <div id="story">

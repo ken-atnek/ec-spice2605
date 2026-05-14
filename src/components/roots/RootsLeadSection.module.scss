@@ -145,6 +145,38 @@
                 padding: 0;
                 margin-top: 1rem;
             }
+            .anchorEvent {
+                position: relative;
+                display: flex;
+                width: 100%;
+                background-color: #952828;
+                color: $pure-white;
+                border-radius: 1rem;
+                .itemImage {
+                    img {
+                        border-radius: 1rem;
+                        aspect-ratio: 1;
+                    }
+                }
+                p {
+                    position: relative;
+                    text-align: center;
+                    flex: 1;
+                    font-size: fs-fluid(17);
+                    font-weight: 700;
+                    padding-top: 1em;
+                    letter-spacing: 0.04em;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 50%;
+                        translate: -50%;
+                        bottom: 0.8em;
+                        width: 1.8rem;
+                        @include svg-arrow-bottom("fff");
+                    }
+                }
+            }
         }
     }
 }

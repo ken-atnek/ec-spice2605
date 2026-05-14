@@ -57,16 +57,23 @@
             h4 {
                 font-size: fs-fluid(18);
                 font-weight: 500;
-                margin-top: 2em;
+                margin-top: 1.4em;
+                @include up-tb {
+                    font-size: fz(20);
+                }
             }
             .itemText {
                 font-size: inherit;
                 display: flex;
                 flex-direction: column;
-                margin-top: 1rem;
+                margin-top: 1.4rem;
                 p {
                     font-size: fs-fluid(16);
                     line-height: 2em;
+                    min-height: 0.8lh;
+                    @include up-tb {
+                        font-size: fz(16);
+                    }
                 }
             }
         }
