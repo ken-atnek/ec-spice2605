@@ -36,7 +36,7 @@ export default function RootsFooter() {
         </nav>
       </article>
       <p className={styles.copy}>
-        © 2026 KUMANICHI SPICES. All rights reserved.
+        © 2026 KUMANICHI SPICE. All rights reserved.
       </p>
     </footer>
   );
