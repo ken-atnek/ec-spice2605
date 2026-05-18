@@ -13,6 +13,8 @@
 9. `docs/rules/front-rules/fetch-pattern.md`
 10. `docs/rules/front-rules/ui-interactions.md`
 11. `docs/rules/front-rules/checklist.md`
+12. `docs/seo/SEO_AUDIT_REQUEST_TEMPLATE.md`
+13. `docs/seo/SEO_FIX_TRACKER_TEMPLATE.md`
 
 必須ルール（最優先）:
 

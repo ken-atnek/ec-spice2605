@@ -20,6 +20,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 8. `docs/rules/front-rules/fetch-pattern.md`
 9. `docs/rules/front-rules/ui-interactions.md`
 10. `docs/rules/front-rules/checklist.md`
+11. `docs/seo/SEO_AUDIT_REQUEST_TEMPLATE.md`
+12. `docs/seo/SEO_FIX_TRACKER_TEMPLATE.md`
 
 ---
 
