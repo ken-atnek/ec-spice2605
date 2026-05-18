@@ -45,9 +45,16 @@ const metadataBase = isRealProduction
   : undefined;
 
 export const metadata: Metadata = {
+  title: 'よかモノがたり｜熊日すぱいす',
+  description:
+    '作り手のストーリーや、作品・商品に込めた思いを届ける「よかモノがたり」。熊日すぱいすが熊本の本当の魅力を取材して紹介します。',
   ...(isRealProduction && {
     metadataBase,
     openGraph: {
+      title: 'よかモノがたり｜熊日すぱいす',
+      description:
+        '作り手のストーリーや、作品・商品に込めた思いを届ける「よかモノがたり」。熊日すぱいすが熊本の本当の魅力を取材して紹介します。',
+      siteName: '熊日すぱいす',
       url: metadataBase?.toString(),
       type: 'website',
       images: [
@@ -58,6 +65,13 @@ export const metadata: Metadata = {
           alt: '熊日すぱいすのOGP画像',
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'よかモノがたり｜熊日すぱいす',
+      description:
+        '作り手のストーリーや、作品・商品に込めた思いを届ける「よかモノがたり」。熊日すぱいすが熊本の本当の魅力を取材して紹介します。',
+      images: ['/ogp.jpg'],
     },
   }),
   robots: isRealProduction ? 'index, follow' : 'noindex, nofollow',

@@ -44,11 +44,10 @@ export default function RootsLeadSection({
             <div className={styles.itemImage}>
               <Image
                 src={heroImage}
-                alt=""
+                alt={heroCatchCopy.join(' ')}
                 width={362}
                 height={520}
                 priority
-                loading="eager"
               />
             </div>
             <p className={styles.catchCopy}>

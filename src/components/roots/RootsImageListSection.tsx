@@ -97,7 +97,7 @@ export default function RootsImageListSection({
           >
             <Image
               src={entry.src}
-              alt="ストーリー画像"
+              alt=""
               width={1200}
               height={800}
               className={styles.image}
@@ -122,10 +122,7 @@ export default function RootsImageListSection({
           >
             <Splide
               key={`modal-${activeIndex}-${displayImages.length}`}
-              onMove={(
-                _splide: SplideInstance,
-                newIndex: number
-              ) => {
+              onMove={(_splide: SplideInstance, newIndex: number) => {
                 const normalized =
                   ((newIndex % displayImages.length) + displayImages.length) %
                   displayImages.length;
@@ -155,7 +152,9 @@ export default function RootsImageListSection({
                 <SplideSlide
                   key={`${item.src}-${index}`}
                   className={
-                    index === currentIndex ? styles.slideActive : styles.slideSub
+                    index === currentIndex
+                      ? styles.slideActive
+                      : styles.slideSub
                   }
                 >
                   <Image
