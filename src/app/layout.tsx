@@ -2,10 +2,11 @@
  *熊日すぱいす Layout
  * URL:src/app/layout.tsx
  * Created: 2026-04-04
- * Last updated: 2026-04-04
+ * Last updated: 2026-05-15
  * ======================================= */
 
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import '@/styles/globals.scss';
 import SvgDefs from '@/components/SvgDefs';
 import { isRealProduction } from '@/lib/env';
@@ -44,9 +45,16 @@ const metadataBase = isRealProduction
   : undefined;
 
 export const metadata: Metadata = {
+  title: 'よかモノがたり｜熊日すぱいす',
+  description:
+    '作り手のストーリーや、作品・商品に込めた思いを届ける「よかモノがたり」。熊日すぱいすが熊本の本当の魅力を取材して紹介します。',
   ...(isRealProduction && {
     metadataBase,
     openGraph: {
+      title: 'よかモノがたり｜熊日すぱいす',
+      description:
+        '作り手のストーリーや、作品・商品に込めた思いを届ける「よかモノがたり」。熊日すぱいすが熊本の本当の魅力を取材して紹介します。',
+      siteName: '熊日すぱいす',
       url: metadataBase?.toString(),
       type: 'website',
       images: [
@@ -57,6 +65,13 @@ export const metadata: Metadata = {
           alt: '熊日すぱいすのOGP画像',
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'よかモノがたり｜熊日すぱいす',
+      description:
+        '作り手のストーリーや、作品・商品に込めた思いを届ける「よかモノがたり」。熊日すぱいすが熊本の本当の魅力を取材して紹介します。',
+      images: ['/ogp.jpg'],
     },
   }),
   robots: isRealProduction ? 'index, follow' : 'noindex, nofollow',
@@ -97,6 +112,23 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WVQBTF33"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-WVQBTF33');
+          `}
+        </Script>
         <SvgDefs />
         <main>{children}</main>
       </body>

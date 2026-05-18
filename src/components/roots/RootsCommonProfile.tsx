@@ -28,7 +28,7 @@ export default function RootsCommonProfile({
   isInsideTeaser = false,
 }: Props) {
   return (
-    <section
+    <div
       className={`${styles.rootsCommonProfile} ${
         isInsideTeaser ? styles.isInsideTeaser : ''
       }`}
@@ -54,6 +54,6 @@ export default function RootsCommonProfile({
           {paragraph}
         </p>
       ))}
-    </section>
+    </div>
   );
 }

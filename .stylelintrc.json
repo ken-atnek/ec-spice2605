@@ -1,14 +1,23 @@
 {
-  "extends": [
-    "stylelint-config-standard-scss"
-  ],
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "rule-empty-line-before": "never",
+    "at-rule-empty-line-before": "never",
+    "declaration-empty-line-before": "never",
+    "comment-empty-line-before": "never",
+    "custom-property-empty-line-before": "never",
+    "scss/double-slash-comment-empty-line-before": "never",
+    "scss/dollar-variable-empty-line-before": "never"
+  },
   "overrides": [
     {
-      "files": [
-        "**/*.module.scss"
-      ],
+      "files": ["**/*.module.scss"],
       "rules": {
-        "selector-class-pattern": "^[a-z][a-zA-Z0-9_-]*$"
+        "selector-class-pattern": "^[a-z][a-zA-Z0-9_-]*$",
+        "selector-pseudo-class-no-unknown": [
+          true,
+          { "ignorePseudoClasses": ["global", "local"] }
+        ]
       }
     }
   ]

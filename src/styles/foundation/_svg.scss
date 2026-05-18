@@ -1,13 +1,24 @@
 @mixin svg-bg-base($w, $h) {
-  aspect-ratio: #{$w} / #{$h};
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+    aspect-ratio: #{$w} / #{$h};
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
-
 // ロゴマーク
 @mixin svg-box-corner($color, $w: 10, $h: 10) {
-  @include svg-bg-base($w, $h);
-
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$w} #{$h}" fill="%23#{$color}"><path d="M10,.02C9.82,0,9.63,0,9.44,0,4.23,0,0,4.23,0,9.44c0,.19,0,.37.02.56h-.02V0h10v.02Z"/></svg>');
+    @include svg-bg-base($w, $h);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$w} #{$h}" fill="%23#{$color}"><path d="M10,.02C9.82,0,9.63,0,9.44,0,4.23,0,0,4.23,0,9.44c0,.19,0,.37.02.56h-.02V0h10v.02Z"/></svg>');
+}
+// →矢印アイコン
+@mixin svg-arrow-right($color) {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 17" fill="%23#{$color}">  <path class="cls-1" d="M1.05,17c-.24,0-.47-.08-.67-.24-.45-.37-.51-1.04-.14-1.5l5.55-6.76L.24,1.74C-.13,1.29-.07.62.38.25.83-.13,1.49-.07,1.86.39l5.75,7c.25.31.39.7.39,1.11s-.14.8-.38,1.1l-5.76,7.01c-.21.25-.51.38-.81.38ZM5.99,8.74h.01-.01Z"/></svg>');
+    aspect-ratio: 8/17;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+// →矢印アイコン
+@mixin svg-arrow-bottom($color, $w: 16, $h: 7) {
+    @include svg-bg-base($w, $h);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$w} #{$h}" fill="%23#{$color}"><path d="M16 0.687994L8.26359 6.79139L8 7L7.73641 6.79139L0 0.687994L0.527177 0L8 5.89478L15.4728 0L16 0.687994Z"/></svg>');
 }

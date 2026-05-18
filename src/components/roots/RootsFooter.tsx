@@ -22,21 +22,21 @@ export default function RootsFooter() {
         </div>
         <nav>
           <ExternalLink className={styles.snsInsta}>
-            <svg role="img" aria-labelledby="logoTitle">
-              <title id="logoTitle">インスタグラムアイコン</title>
+            <svg role="img" aria-labelledby="svgTitleInsta">
+              <title id="svgTitleInsta">インスタグラムアイコン</title>
               <use href="#svgSnsInsta" />
             </svg>
           </ExternalLink>
           <ExternalLink className={styles.snsX}>
-            <svg role="img" aria-labelledby="logoTitle">
-              <title id="logoTitle">エックスアイコン</title>
+            <svg role="img" aria-labelledby="svgTitleX">
+              <title id="svgTitleX">エックスアイコン</title>
               <use href="#svgSnsX" />
             </svg>
           </ExternalLink>
         </nav>
       </article>
       <p className={styles.copy}>
-        © 2026 KUMANICHI SPICES. All rights reserved.
+        © 2026 KUMANICHI SPICE. All rights reserved.
       </p>
     </footer>
   );

@@ -6,14 +6,11 @@
 @use "./foundation/interaction" as *;
 @use "./foundation/svg" as *;
 @use "./foundation/ui" as *;
-
 html {
     scroll-behavior: smooth;
 }
-
 body {
     @include sans;
-
     // font-feature-settings: "palt";
     font-size: clamp(1.2rem, #{$base-vw}vw + #{$slice}px, 1.6rem);
     margin: 0;
@@ -26,13 +23,11 @@ body {
     width: 100%;
     color: $pure-black;
     background-color: $main-white;
-
     // max-width: calc($sp + 1px);
     //   @include up-sp {
     //     max-width: calc($tb + 1px);
     //   }
 }
-
 main {
     font-size: inherit;
     flex: 1;
@@ -41,7 +36,6 @@ main {
     flex-direction: column;
     background-color: $main-white;
 }
-
 section,
 article,
 header,
@@ -51,29 +45,24 @@ footer {
     font-size: inherit;
     z-index: 1;
 }
-
 svg {
     width: 100%;
     fill: unset;
     stroke: unset;
 }
-
 br {
     &.pc {
         @include sp {
             display: none;
         }
     }
-
     &.sp {
         display: none;
-
         @include sp {
             display: inline;
         }
     }
 }
-
 @include pc {
     a[href^="tel:"] {
         pointer-events: none;

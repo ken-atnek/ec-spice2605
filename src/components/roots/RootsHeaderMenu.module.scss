@@ -1,5 +1,4 @@
 @use "../../styles/foundation/" as *;
-
 /* =======================================
  * 熊日すぱいす ROOTS RootsHeaderMenu スタイル
  * URL: /src/components/roots/RootsHeaderMenu.module.scss
@@ -7,7 +6,6 @@
  * Created: 2026-05-02
  * Last updated: 2026-05-02
  * ======================================= */
-
 .hamburgerButton {
     position: fixed;
     top: 4vw;
@@ -18,7 +16,10 @@
     z-index: 90;
     background-color: $main-red;
     color: $pure-white;
-
+    @include up-tb {
+        top: 5rem;
+        right: max(3vw, calc((100vw - #{$article-max-width}) / 2));
+    }
     span {
         position: absolute;
         top: 50%;
@@ -27,31 +28,25 @@
         height: 1px;
         background-color: $pure-white;
         transition: 0.3s ease-out;
-
         &:nth-of-type(1) {
             translate: -50% calc(-50% - 5px);
         }
-
         &:nth-of-type(2) {
             translate: -50% -50%;
         }
-
         &:nth-of-type(3) {
             translate: -50% calc(-50% + 5px);
         }
     }
-
     &.is-open {
         span {
             &:nth-of-type(1) {
                 translate: -50% -50%;
                 rotate: 45deg;
             }
-
             &:nth-of-type(2) {
                 opacity: 0;
             }
-
             &:nth-of-type(3) {
                 translate: -50% -50%;
                 rotate: -45deg;
@@ -59,7 +54,13 @@
         }
     }
 }
-
+:global(body.is-roots-image-modal-open) {
+    .hamburgerButton {
+        opacity: 0;
+        transition: 0.3s ease-out;
+        pointer-events: none;
+    }
+}
 .containerHeader {
     position: fixed;
     inset: 0;
@@ -74,19 +75,20 @@
     display: flex;
     flex-direction: column;
     gap: 8vw 0;
-
+    @include up-tb {
+        padding: 10rem 0 0;
+        gap: 5rem 0;
+    }
     &.is-open {
         opacity: 1;
         pointer-events: auto;
         translate: 0;
     }
-
     nav {
         display: grid;
         gap: 36px;
         justify-items: center;
         font-size: inherit;
-
         a {
             color: $main-blown;
             text-align: center;
@@ -94,16 +96,12 @@
             display: flex;
             flex-direction: column;
             gap: 1.8em 0;
-
             .en {
                 position: relative;
                 font-size: fs-fluid(32);
-
                 @include cormorant;
-
                 font-weight: 700;
                 letter-spacing: 0.1em;
-
                 &::after {
                     content: "";
                     position: absolute;
@@ -115,11 +113,19 @@
                     background-color: $main-blown;
                 }
             }
-
             .ja {
                 font-size: fs-fluid(14);
                 letter-spacing: 0.02em;
             }
+        }
+    }
+    .boxStoreLink {
+        padding-inline: $mobile-padding;
+        font-size: inherit;
+        @include up-tb {
+            padding: 0;
+            max-width: 56rem;
+            align-self: center;
         }
     }
 }

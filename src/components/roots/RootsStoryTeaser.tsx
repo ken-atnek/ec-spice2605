@@ -8,6 +8,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import RootsCommonProfile from './RootsCommonProfile';
+import RootsWebStoreCta from './RootsWebStoreCta';
 import styles from './RootsStoryTeaser.module.scss';
 
 type Props = {
@@ -19,6 +20,7 @@ type Props = {
   nameEn: string;
   pageText: string[];
   illustration: string;
+  webStoreUrl?: string;
 };
 
 export default function RootsStoryTeaser({
@@ -30,34 +32,45 @@ export default function RootsStoryTeaser({
   nameEn,
   pageText,
   illustration,
+  webStoreUrl,
 }: Props) {
   return (
     <div className={styles.rootsStoryTeaserFrame}>
-      <article>
-        <div className={styles.itemH2}>
-          <span>STORY</span>
-          <h2>人物ストーリー</h2>
+      <div className={styles.innerContents}>
+        <article>
+          <div className={styles.wrapArticle}>
+            <div className={styles.itemH2}>
+              <span>STORY</span>
+              <h2>人物ストーリー</h2>
+            </div>
+            <Image
+              src={image}
+              alt="人物ストーリー"
+              width={1200}
+              height={700}
+              className={styles.hero}
+            />
+            <RootsCommonProfile
+              shopName={shopName}
+              position={position}
+              name={name}
+              nameEn={nameEn}
+              pageText={pageText}
+              illustration={illustration}
+              isInsideTeaser
+            />
+            <Link href={storyHref} className={styles.linkStory}>
+              STORYの続きを見る
+            </Link>
+          </div>
+        </article>
+      </div>
+
+      {webStoreUrl ? (
+        <div className={styles.boxStoreLink}>
+          <RootsWebStoreCta url={webStoreUrl} />{' '}
         </div>
-        <Image
-          src={image}
-          alt="人物ストーリー"
-          width={1200}
-          height={700}
-          className={styles.hero}
-        />
-        <RootsCommonProfile
-          shopName={shopName}
-          position={position}
-          name={name}
-          nameEn={nameEn}
-          pageText={pageText}
-          illustration={illustration}
-          isInsideTeaser
-        />
-        <Link href={storyHref} className={styles.linkStory}>
-          STORYの続きを見る
-        </Link>
-      </article>
+      ) : null}
     </div>
   );
 }

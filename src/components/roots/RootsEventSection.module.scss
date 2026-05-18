@@ -1,5 +1,4 @@
 @use "../../styles/foundation/" as *;
-
 /* =======================================
  * 熊日すぱいす ROOTS RootsEventSection スタイル
  * URL: /src/components/roots/RootsEventSection.module.scss
@@ -7,17 +6,19 @@
  * Created: 2026-05-02
  * Last updated: 2026-05-05
  * ======================================= */
-
 .rootsEventSection {
     display: flex;
     flex-direction: column;
     color: $main-blown;
     padding: 0 $mobile-padding 4em;
-
+    @include up-tb {
+        padding-inline: 2em;
+        align-items: center;
+        padding-top: 3em;
+    }
     .itemH2 {
         @include item-h2;
     }
-
     .boxContents {
         font-size: inherit;
         display: flex;
@@ -26,70 +27,58 @@
         color: $main-red;
         padding: 2em 1em;
         margin-top: 2em;
-
+        @include up-tb {
+            max-width: $article-max-width;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            padding: 2em;
+            margin-top: 3em;
+            width: 100%;
+        }
         h3 {
             font-size: fs-fluid(24);
+            @include up-tb {
+                grid-column: span 2;
+            }
         }
-
         img {
             aspect-ratio: 1;
             object-fit: cover;
             font-size: inherit;
             margin-top: 0.8em;
+            @include up-tb {
+                max-width: 33rem;
+            }
         }
-
         .wrapDetails {
             position: relative;
             font-size: inherit;
-            padding-inline: 1em;
-
+            padding-inline: 2vw;
+            @include up-tb {
+                padding-inline: 1em;
+            }
             h4 {
                 font-size: fs-fluid(18);
                 font-weight: 500;
+                margin-top: 1em;
+                @include up-tb {
+                    font-size: fz(20);
+                }
             }
-
             .itemText {
                 font-size: inherit;
                 display: flex;
                 flex-direction: column;
-
+                margin-top: 1.4rem;
                 p {
                     font-size: fs-fluid(16);
-                    line-height: 2em;
+                    line-height: 1.6em;
+                    min-height: 0.6lh;
+                    @include up-tb {
+                        font-size: fz(16);
+                    }
                 }
             }
         }
-    }
-}
-
-.shopTitle {
-    margin: 0;
-    color: #cf1f24;
-    font-size: 5.6rem;
-    line-height: 1.2;
-}
-
-.image {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin-top: 8px;
-}
-
-.postTitle {
-    margin: 16px 0 0;
-    color: #cf1f24;
-    font-size: 2.2rem;
-    line-height: 1.6;
-}
-
-.text {
-    margin: 14px 0 0;
-    color: #cf1f24;
-    font-size: 1.9rem;
-    line-height: 1.9;
-
-    & + & {
-        margin-top: 0.8em;
     }
 }

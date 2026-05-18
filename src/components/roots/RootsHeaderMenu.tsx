@@ -5,11 +5,11 @@
  * Created: 2026-05-02
  * Last updated: 2026-05-02
  * ======================================= */
-import Link from "next/link";
-import { useEffect, useRef } from "react";
-import clsx from "clsx";
-import RootsWebStoreCta from "./RootsWebStoreCta";
-import styles from "./RootsHeaderMenu.module.scss";
+import Link from 'next/link';
+import { useEffect, useRef } from 'react';
+import clsx from 'clsx';
+import RootsWebStoreCta from './RootsWebStoreCta';
+import styles from './RootsHeaderMenu.module.scss';
 
 type MenuItem = {
   href: string;
@@ -48,9 +48,9 @@ export default function RootsHeaderMenu({
         onClose();
       }
     };
-    document.addEventListener("click", handleOutsideClick, true);
+    document.addEventListener('click', handleOutsideClick, true);
     return () =>
-      document.removeEventListener("click", handleOutsideClick, true);
+      document.removeEventListener('click', handleOutsideClick, true);
   }, [isOpen, onClose]);
 
   const webStoreSection = webStoreUrl ? (
@@ -62,7 +62,7 @@ export default function RootsHeaderMenu({
       <button
         type="button"
         ref={buttonRef}
-        className={clsx(styles.hamburgerButton, isOpen && styles["is-open"])}
+        className={clsx(styles.hamburgerButton, isOpen && styles['is-open'])}
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-label="メニューを開閉"
@@ -73,7 +73,7 @@ export default function RootsHeaderMenu({
       </button>
 
       <header
-        className={clsx(styles.containerHeader, isOpen && styles["is-open"])}
+        className={clsx(styles.containerHeader, isOpen && styles['is-open'])}
         ref={navRef}
       >
         <nav>
@@ -84,8 +84,7 @@ export default function RootsHeaderMenu({
             </Link>
           ))}
         </nav>
-
-        {webStoreSection}
+        <div className={styles.boxStoreLink}>{webStoreSection}</div>
       </header>
     </>
   );
