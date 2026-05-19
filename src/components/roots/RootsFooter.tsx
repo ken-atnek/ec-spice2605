@@ -21,13 +21,16 @@ export default function RootsFooter() {
           />
         </div>
         <nav>
-          <ExternalLink className={styles.snsInsta}>
+          <ExternalLink
+            className={styles.snsInsta}
+            href="https://www.instagram.com/kumanichi_spice/"
+          >
             <svg role="img" aria-labelledby="svgTitleInsta">
               <title id="svgTitleInsta">インスタグラムアイコン</title>
               <use href="#svgSnsInsta" />
             </svg>
           </ExternalLink>
-          <ExternalLink className={styles.snsX}>
+          <ExternalLink className={styles.snsX} href="https://x.com/spice30">
             <svg role="img" aria-labelledby="svgTitleX">
               <title id="svgTitleX">エックスアイコン</title>
               <use href="#svgSnsX" />
