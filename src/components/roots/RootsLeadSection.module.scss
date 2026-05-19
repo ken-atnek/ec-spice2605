@@ -1,0 +1,182 @@
+@use "../../styles/foundation/" as *;
+/* =======================================
+ * 熊日すぱいす ROOTS RootsLeadSection スタイル
+ * URL: /src/components/roots/RootsLeadSection.module.scss
+ * Referenced in: /src/components/roots/RootsLeadSection.tsx
+ * Created: 2026-05-09
+ * Last updated: 2026-05-09
+ * ======================================= */
+.rootsLeadSection {
+    display: flex;
+    flex-direction: column;
+    @include up-tb {
+        align-items: center;
+        padding-inline: 2em;
+        padding-top: 5rem;
+    }
+    article {
+        display: contents;
+        @include up-tb {
+            max-width: $article-max-width;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr auto auto;
+        }
+        .rootsHero {
+            padding: 3vw 3vw 0;
+            @include up-tb {
+                display: contents;
+            }
+            .logoCard {
+                position: absolute;
+                top: 3vw;
+                left: 0;
+                width: 28vw;
+                padding: 8px 0 1rem;
+                border-radius: 0 0 1rem;
+                background: #fff;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px 0;
+                @include up-tb {
+                    top: 0;
+                    width: 17rem;
+                }
+                // z-index: 1;
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    width: 1rem;
+                    @include svg-box-corner("fff");
+                    z-index: 10;
+                }
+                &::before {
+                    top: 0;
+                    left: calc(100% - 1px);
+                }
+                &::after {
+                    top: calc(100% - 1px);
+                    left: 3vw;
+                    @include up-tb {
+                        left: 0;
+                    }
+                }
+                span {
+                    @include serif;
+                    font-size: 12px;
+                    letter-spacing: 0.04em;
+                }
+            }
+            .boxContents {
+                position: relative;
+                aspect-ratio: 362 / 520;
+                border-radius: 0 1rem 1rem;
+                overflow: hidden;
+                @include up-tb {
+                    display: contents;
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 10px;
+                    background: linear-gradient(
+                        180deg,
+                        rgb(51 38 26 / 0%) 63.46%,
+                        rgb(51 38 26 / 70%) 100%
+                    );
+                    @include up-tb {
+                        display: none;
+                    }
+                }
+                .itemImage {
+                    position: relative;
+                    @include up-tb {
+                        grid-row: span 3;
+                        font-size: inherit;
+                        padding-right: 3rem;
+                    }
+                    img {
+                        width: 100%;
+                        aspect-ratio: 362/520;
+                        object-fit: cover;
+                        object-position: center;
+                        @include up-tb {
+                            border-radius: 1rem;
+                        }
+                    }
+                }
+                .catchCopy {
+                    position: absolute;
+                    left: 20px;
+                    bottom: 24px;
+                    z-index: 2;
+                    margin: 0;
+                    color: #fff;
+                    font-size: fs-fluid(24);
+                    @include serif;
+                    letter-spacing: 0.14em;
+                    span {
+                        line-height: 1.45;
+                        display: block;
+                        @include up-tb {
+                            line-height: 1.4em;
+                        }
+                    }
+                    @include up-tb {
+                        font-size: fz(42);
+                        position: relative;
+                        color: $main-blown;
+                        left: 0;
+                        bottom: unset;
+                        align-self: center;
+                    }
+                }
+            }
+        }
+        .boxStoreLink {
+            font-size: inherit;
+            position: relative;
+            padding: 0 $mobile-padding;
+            @include up-tb {
+                padding: 0;
+                margin-top: 1rem;
+            }
+            .anchorEvent {
+                position: relative;
+                display: flex;
+                width: 100%;
+                background-color: #952828;
+                color: $pure-white;
+                border-radius: 1rem;
+                .itemImage {
+                    img {
+                        border-radius: 1rem;
+                        aspect-ratio: 1;
+                    }
+                }
+                p {
+                    position: relative;
+                    text-align: center;
+                    flex: 1;
+                    font-size: fs-fluid(17);
+                    font-weight: 700;
+                    padding-top: 1em;
+                    letter-spacing: 0.04em;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 50%;
+                        translate: -50%;
+                        bottom: 0.8em;
+                        width: 1.8rem;
+                        @include svg-arrow-bottom("fff");
+                    }
+                }
+            }
+        }
+    }
+}

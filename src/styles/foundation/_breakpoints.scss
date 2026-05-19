@@ -1,0 +1,72 @@
+/* =================================
+ * レスポンシブ設定
+ * - 基本方針: Mobile First
+ * - 新規実装: up-* を使用
+ * - 既存互換: 下部の legacy mixin を使用可
+ * ------------------------------ */
+$tbw: 1194px;
+$tb: 834px;
+$spw: 928px;
+$sp: 480px;
+/* =================================
+ * Mobile First（推奨）
+ * ------------------------------
+ * SPをデフォルトで記述し、
+ * 画面が広い方向（min-width）で上書きする
+ * ================================= */
+// 既存の $sp（480px）を閾値として、481pxから適用
+// 481px以上
+@mixin up-sp {
+    @media (min-width: #{$sp + 1px}) {
+        @content;
+    }
+}
+// 既存の $tb（834px）を閾値として、835pxから適用
+// 835px以上
+@mixin up-tb {
+    @media (min-width: #{$tb + 1px}) {
+        @content;
+    }
+}
+// 既存の $tbw（1194px）を閾値として、1195pxから適用
+// 1195px以上
+@mixin up-tbw {
+    @media (min-width: #{$tbw + 1px}) {
+        @content;
+    }
+}
+/* =================================
+ * Legacy（既存互換）
+ * ------------------------------
+ * 既存コード向け。新規実装では up-* を優先
+ * ================================= */
+// PCサイズのみ
+@mixin pc {
+    @media (min-width: $sp) {
+        @content;
+    }
+}
+// タブレットサイズ横
+@mixin tbw {
+    @media (max-width: $tbw) and (orientation: landscape) {
+        @content;
+    }
+}
+// タブレットサイズ縦
+@mixin tb {
+    @media (max-width: $tb) and (orientation: portrait) {
+        @content;
+    }
+}
+// スマホサイズ横
+@mixin spw {
+    @media (max-width: $spw) and (orientation: landscape) {
+        @content;
+    }
+}
+// スマホサイズ縦
+@mixin sp {
+    @media (max-width: $sp) and (orientation: portrait) {
+        @content;
+    }
+}
