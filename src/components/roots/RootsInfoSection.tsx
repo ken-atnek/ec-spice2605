@@ -3,7 +3,7 @@
  * URL: /src/components/roots/RootsInfoSection.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-02
- * Last updated: 2026-05-02
+ * Last updated: 2026-05-28
  * ======================================= */
 import styles from './RootsInfoSection.module.scss';
 import ExternalLink from '@/components/common/ExternalLink';

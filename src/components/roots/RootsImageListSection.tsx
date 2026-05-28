@@ -3,7 +3,7 @@
  * URL: /src/components/roots/RootsImageListSection.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-07
- * Last updated: 2026-05-07
+ * Last updated: 2026-05-28
  * ======================================= */
 'use client';
 

@@ -3,17 +3,23 @@
  * URL: /src/components/roots/RootsStorySectionList.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-02
- * Last updated: 2026-05-09
+ * Last updated: 2026-05-28
  * ======================================= */
 import Image from 'next/image';
 import Link from 'next/link';
+import { Fragment } from 'react';
 import RootsWebStoreCta from '@/components/roots/RootsWebStoreCta';
 import type { CommonData } from '@/lib/roots/fetchRootsData';
 import styles from './RootsStorySectionList.module.scss';
 type SectionItem = {
   image: string;
   title: string | string[];
-  textWithImage: string[];
+  contentBlocks: {
+    type: 'text' | 'image';
+    text?: string;
+    src?: string;
+    alt?: string;
+  }[];
 };
 
 type Props = {
@@ -41,6 +47,7 @@ export default function RootsStorySectionList({
             const titleText = Array.isArray(section.title)
               ? section.title.join('')
               : section.title;
+            const contentBlocks = section.contentBlocks;
             return (
               <li key={`${titleText}-${index}`}>
                 <div className={styles.innerLi}>
@@ -67,13 +74,23 @@ export default function RootsStorySectionList({
                       ))}
                     </h3>
                     <div className={styles.itemText}>
-                      {section.textWithImage.map((paragraph, pIndex) => (
-                        <p
-                          key={`${paragraph}-${pIndex}`}
-                          className={styles.text}
-                        >
-                          {paragraph}
-                        </p>
+                      {contentBlocks.map((block, pIndex) => (
+                        <Fragment key={`${block.type}-${pIndex}`}>
+                          {block.type === 'text' && block.text !== undefined ? (
+                            <p className={styles.text}>
+                              {block.text === '' ? '\u00A0' : block.text}
+                            </p>
+                          ) : null}
+                          {block.type === 'image' && block.src ? (
+                            <Image
+                              className={styles.itemInlineImage}
+                              src={block.src}
+                              alt={block.alt || titleText}
+                              width={960}
+                              height={640}
+                            />
+                          ) : null}
+                        </Fragment>
                       ))}
                     </div>
                   </div>

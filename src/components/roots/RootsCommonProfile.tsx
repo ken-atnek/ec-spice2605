@@ -3,7 +3,7 @@
  * URL: /src/components/roots/RootsCommonProfile.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-01
- * Last updated: 2026-05-01
+ * Last updated: 2026-05-28
  * ======================================= */
 import Image from 'next/image';
 import styles from './RootsCommonProfile.module.scss';
@@ -48,12 +48,13 @@ export default function RootsCommonProfile({
           height={200}
         />
       </div>
-
-      {pageText.map((paragraph, index) => (
-        <p key={`${paragraph}-${index}`} className={styles.text}>
-          {paragraph}
-        </p>
-      ))}
+      <div className={styles.wrapText}>
+        {pageText.map((paragraph, index) => (
+          <p key={`${paragraph}-${index}`} className={styles.text}>
+            {paragraph}
+          </p>
+        ))}
+      </div>
     </div>
   );
 }

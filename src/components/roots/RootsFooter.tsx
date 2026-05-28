@@ -3,7 +3,7 @@
  * URL: /src/components/roots/RootsFooter.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-02
- * Last updated: 2026-05-05
+ * Last updated: 2026-05-28
  * ======================================= */
 import ExternalLink from '@/components/common/ExternalLink';
 import styles from './RootsFooter.module.scss';

@@ -4,7 +4,7 @@
  * URL: /src/components/roots/RootsStorySectionList.module.scss
  * Referenced in: /src/components/roots/RootsStorySectionList.tsx
  * Created: 2026-05-02
- * Last updated: 2026-05-05
+ * Last updated: 2026-05-28
  * ======================================= */
 .rootsStorySectionList {
     position: relative;
@@ -114,6 +114,18 @@
                         p {
                             font-size: fs-fluid(16);
                             line-height: 2em;
+                        }
+                        .itemInlineImage {
+                            margin-top: 1em;
+                            aspect-ratio: 1;
+                            object-fit: cover;
+                            max-width: 57vw;
+                            align-self: center;
+                            border-radius: 1rem;
+                            margin-block: 3em;
+                            @include up-tb {
+                                max-width: 23rem;
+                            }
                         }
                     }
                 }

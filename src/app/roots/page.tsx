@@ -4,7 +4,7 @@
  * URL: /src/app/roots/page.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-04-04
- * Last updated: 2026-05-18
+ * Last updated: 2026-05-28
  * ======================================= */
 import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -119,6 +119,9 @@ function RootsContent() {
     { en: 'INFO.', ja: 'お店情報', href: `#info` },
     { en: 'EVENT', ja: 'イベント', href: `#event` },
   ];
+  const showEventAnchorOnStory = commonData?.eventAnchor?.showOnStory ?? true;
+  const showEventAnchorOnProduct =
+    commonData?.eventAnchor?.showOnProduct ?? false;
 
   // --- ストーリーページ ---
   if (isStoryPage) {
@@ -140,7 +143,8 @@ function RootsContent() {
           heroImage={storyHeroImage}
           heroCatchCopy={storyHeroText}
           commonData={commonData}
-          showEventAnchor
+          showEventAnchor={showEventAnchorOnStory}
+          eventAnchorImage={eventsData?.image}
         />
         {storyPage?.sections && storyPage.sections.length > 0 ? (
           <div id="story">
@@ -215,6 +219,8 @@ function RootsContent() {
         heroCatchCopy={productPage.hero.text}
         commonData={commonData}
         showWebStore
+        showEventAnchor={showEventAnchorOnProduct}
+        eventAnchorImage={eventsData?.image}
       />
       <div id="craft">
         <RootsCraftSection

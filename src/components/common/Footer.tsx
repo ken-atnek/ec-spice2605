@@ -2,7 +2,7 @@
  *熊日すぱいす FOOTER
  * URL: src/components/common/Footer.tsx
  * Created: 2026-04-04
- * Last updated: 2026-04-04
+ * Last updated: 2026-05-28
  * ======================================= */
 import { navMenu } from '@/data/navMenuData';
 import styles from './Footer.module.scss';

@@ -3,17 +3,24 @@
  * URL: /src/lib/roots/fetchRootsData.ts
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-01
- * Last updated: 2026-05-01
+ * Last updated: 2026-05-28
  * ======================================= */
 import { withBasePath } from "@/utils/withBasePath";
+
+export type RootsTextLine =
+  | string
+  | {
+      text: string;
+      ruby?: string;
+    };
 
 export type ProductPageData = {
   hero: {
     image: string;
-    text: string[];
+    text: RootsTextLine[];
   };
   main: {
-    title: string | string[];
+    title: RootsTextLine | RootsTextLine[];
     text: string[];
   };
   onlineTitle?: string;
@@ -21,16 +28,7 @@ export type ProductPageData = {
   items: {
     image: string;
     title: string | string[];
-    textWithImage: Array<
-      | string
-      | {
-          type: "text" | "image";
-          text?: string;
-          src?: string;
-          alt?: string;
-        }
-    >;
-    contentBlocks?: {
+    contentBlocks: {
       type: "text" | "image";
       text?: string;
       src?: string;
@@ -48,7 +46,12 @@ export type StoryPageData = {
   sections?: {
     image: string;
     title: string | string[];
-    textWithImage: string[];
+    contentBlocks: {
+      type: "text" | "image";
+      text?: string;
+      src?: string;
+      alt?: string;
+    }[];
   }[];
 };
 
@@ -62,6 +65,10 @@ export type CommonData = {
   productLinkImage?: string;
   commonNotice?: string;
   onlineShopUrl: string;
+  eventAnchor?: {
+    showOnProduct?: boolean;
+    showOnStory?: boolean;
+  };
 };
 
 export type InfoData = {

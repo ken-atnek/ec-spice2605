@@ -3,7 +3,7 @@
  * URL: /src/components/roots/RootsOutlineCtaLink.tsx
  * Referenced in: /src/components/roots/RootsCraftSection.tsx
  * Created: 2026-05-02
- * Last updated: 2026-05-02
+ * Last updated: 2026-05-28
  * ======================================= */
 import ExternalLink from '@/components/common/ExternalLink';
 import styles from './RootsOutlineCtaLink.module.scss';

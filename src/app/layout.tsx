@@ -2,7 +2,7 @@
  *熊日すぱいす Layout
  * URL:src/app/layout.tsx
  * Created: 2026-04-04
- * Last updated: 2026-05-15
+ * Last updated: 2026-05-28
  * ======================================= */
 
 import type { Metadata } from 'next';

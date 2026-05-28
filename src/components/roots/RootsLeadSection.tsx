@@ -3,21 +3,40 @@
  * URL: /src/components/roots/RootsLeadSection.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-09
- * Last updated: 2026-05-09
+ * Last updated: 2026-05-28
  * ======================================= */
 import Image from 'next/image';
 import Link from 'next/link';
 import RootsCommonProfile from '@/components/roots/RootsCommonProfile';
 import RootsWebStoreCta from '@/components/roots/RootsWebStoreCta';
-import type { CommonData } from '@/lib/roots/fetchRootsData';
+import type {
+  CommonData,
+  RootsTextLine,
+} from '@/lib/roots/fetchRootsData';
 import styles from './RootsLeadSection.module.scss';
+
+const getLineText = (line: RootsTextLine): string =>
+  typeof line === 'string' ? line : line.text;
+
+const renderLine = (line: RootsTextLine) => {
+  if (typeof line === 'string') return line;
+  if (!line.ruby) return line.text;
+
+  return (
+    <ruby>
+      {line.text}
+      <rt>{line.ruby}</rt>
+    </ruby>
+  );
+};
 
 type Props = {
   heroImage: string;
-  heroCatchCopy: string[];
+  heroCatchCopy: RootsTextLine[];
   commonData: CommonData;
   showWebStore?: boolean;
   showEventAnchor?: boolean;
+  eventAnchorImage?: string;
 };
 
 export default function RootsLeadSection({
@@ -26,6 +45,7 @@ export default function RootsLeadSection({
   commonData,
   showWebStore = false,
   showEventAnchor = false,
+  eventAnchorImage = '/db/roots/images/001/event.jpg',
 }: Props) {
   return (
     <section className={styles.rootsLeadSection}>
@@ -44,7 +64,7 @@ export default function RootsLeadSection({
             <div className={styles.itemImage}>
               <Image
                 src={heroImage}
-                alt={heroCatchCopy.join(' ')}
+                alt={heroCatchCopy.map(getLineText).join(' ')}
                 width={362}
                 height={520}
                 priority
@@ -52,7 +72,7 @@ export default function RootsLeadSection({
             </div>
             <p className={styles.catchCopy}>
               {heroCatchCopy.map((line, index) => (
-                <span key={`${line}-${index}`}>{line}</span>
+                <span key={`${getLineText(line)}-${index}`}>{renderLine(line)}</span>
               ))}
             </p>
           </div>
@@ -73,8 +93,8 @@ export default function RootsLeadSection({
             <Link href="#event" className={styles.anchorEvent}>
               <div className={styles.itemImage}>
                 <Image
-                  src="/db/roots/images/001/event.jpg"
-                  alt="シュークリーム画像 "
+                  src={eventAnchorImage}
+                  alt="イベントアンカー用画像 "
                   width={70}
                   height={70}
                 />

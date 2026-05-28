@@ -3,13 +3,29 @@
  * URL: /src/components/roots/RootsCraftSection.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-02
- * Last updated: 2026-05-02
+ * Last updated: 2026-05-28
  * ======================================= */
 import styles from './RootsCraftSection.module.scss';
 import Image from 'next/image';
 import { Fragment } from 'react';
+import type { RootsTextLine } from '@/lib/roots/fetchRootsData';
 import RootsOutlineCtaLink from './RootsOutlineCtaLink';
 import RootsWebStoreCta from './RootsWebStoreCta';
+
+const getLineText = (line: RootsTextLine): string =>
+  typeof line === 'string' ? line : line.text;
+
+const renderLine = (line: RootsTextLine) => {
+  if (typeof line === 'string') return line;
+  if (!line.ruby) return line.text;
+
+  return (
+    <ruby>
+      {line.text}
+      <rt>{line.ruby}</rt>
+    </ruby>
+  );
+};
 
 type ContentBlock = {
   type: 'text' | 'image';
@@ -20,13 +36,12 @@ type ContentBlock = {
 
 type CraftItem = {
   image: string;
-  title: string | string[];
-  textWithImage: Array<string | ContentBlock>;
-  contentBlocks?: ContentBlock[];
+  title: RootsTextLine | RootsTextLine[];
+  contentBlocks: ContentBlock[];
 };
 
 type Props = {
-  mainTitle: string | string[];
+  mainTitle: RootsTextLine | RootsTextLine[];
   mainText: string[];
   onlineTitle: string;
   ecUrl: string;
@@ -34,19 +49,9 @@ type Props = {
   webStoreUrl?: string;
 };
 
-const toTitleLines = (title: string | string[]): string[] => {
+const toTitleLines = (title: RootsTextLine | RootsTextLine[]): RootsTextLine[] => {
   if (Array.isArray(title)) return title;
   return [title];
-};
-
-const toContentBlocks = (item: CraftItem): ContentBlock[] => {
-  if (item.contentBlocks && item.contentBlocks.length > 0)
-    return item.contentBlocks;
-
-  return item.textWithImage.map((entry) => {
-    if (typeof entry === 'string') return { type: 'text', text: entry };
-    return entry;
-  });
 };
 
 export default function RootsCraftSection({
@@ -68,8 +73,8 @@ export default function RootsCraftSection({
         </div>
         <h3>
           {titleLines.map((line, index) => (
-            <span key={`${line}-${index}`}>
-              {line}
+            <span key={`${getLineText(line)}-${index}`}>
+              {renderLine(line)}
               {index < titleLines.length - 1 ? <br /> : null}
             </span>
           ))}
@@ -92,10 +97,8 @@ export default function RootsCraftSection({
         {items.map((item, index) => {
           const no = String(index + 1).padStart(2, '0');
           const itemTitleLines = toTitleLines(item.title);
-          const itemTitleText = Array.isArray(item.title)
-            ? item.title.join('')
-            : item.title;
-          const contentBlocks = toContentBlocks(item);
+          const itemTitleText = itemTitleLines.map(getLineText).join('');
+          const contentBlocks = item.contentBlocks;
           return (
             <li key={`${itemTitleText}-${index}`}>
               <div className={styles.innerLi}>
@@ -109,8 +112,8 @@ export default function RootsCraftSection({
                 />
                 <h4>
                   {itemTitleLines.map((line, lineIndex) => (
-                    <span key={`${line}-${lineIndex}`}>
-                      {line}
+                    <span key={`${getLineText(line)}-${lineIndex}`}>
+                      {renderLine(line)}
                       {lineIndex < itemTitleLines.length - 1 ? <br /> : null}
                     </span>
                   ))}

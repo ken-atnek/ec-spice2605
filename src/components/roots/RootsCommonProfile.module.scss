@@ -4,7 +4,7 @@
  * URL: /src/components/roots/RootsCommonProfile.module.scss
  * Referenced in: /src/components/roots/RootsCommonProfile.tsx
  * Created: 2026-05-02
- * Last updated: 2026-05-02
+ * Last updated: 2026-05-28
  * ======================================= */
 .rootsCommonProfile {
     display: flex;
@@ -82,10 +82,16 @@
             }
         }
     }
-    .text {
-        font-size: fs-fluid(16);
-        text-align: justify;
-        line-height: 2em;
+    .wrapText {
+        display: flex;
+        flex-direction: column;
+        font-size: inherit;
+        .text {
+            font-size: fs-fluid(16);
+            text-align: justify;
+            line-height: 2em;
+            min-height: 0.8lh;
+        }
     }
 }
 .isInsideTeaser {

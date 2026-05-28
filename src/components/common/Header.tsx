@@ -2,7 +2,7 @@
  *熊日すぱいす HEADER
  * URL: src/components/common/Header.tsx
  * Created: 2026-03-23
- * Last updated: 2026-03-24
+ * Last updated: 2026-05-28
  * ======================================= */
 'use client';
 import { useEffect, useState, useRef } from 'react';

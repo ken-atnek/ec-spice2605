@@ -3,7 +3,7 @@
  * URL: /src/data/navMenuData.ts
  * Referenced in: /src/components/common/Header.tsx, /src/components/common/Footer.tsx
  * Created: 2026-05-01
- * Last updated: 2026-05-01
+ * Last updated: 2026-05-28
  * ======================================= */
 export type NavMenuItem = {
   href: string;

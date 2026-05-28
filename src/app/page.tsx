@@ -3,7 +3,7 @@
  * URL: /src/app/page.tsx
  * Referenced in: /src/app/page.tsx
  * Created: 2026-04-04
- * Last updated: 2026-05-19
+ * Last updated: 2026-05-28
  * ======================================= */
 
 import type { Metadata } from 'next';

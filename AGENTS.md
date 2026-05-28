@@ -34,6 +34,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `next.config.ts` の `output: 'export'` を維持する
 - `docs` に重要な `.md` を追加したら、この参照順に追記して同期する
 - `docs` に運用上重要な `.md` を追加・更新した場合は、`CLAUDE.md` の参照順にも必ず同期する
+- 既存ファイルの `Last updated` コメントは、必要に応じて過去分も更新してよい
 
 ---
 

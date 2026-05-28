@@ -112,8 +112,19 @@ storyPage.json   → 人物ストーリーpage専用
     "ページ共通テキストの1段落目です。",
     "ページ共通テキストの2段落目です。"
   ],
-  "onlineShopUrl": "https://example.com/"
+  "onlineShopUrl": "https://example.com/",
+  "eventAnchor": {
+    "showOnProduct": false,
+    "showOnStory": true
+  }
 }
+```
+
+`eventAnchor` は Hero 下の「EVENTアンカー」表示制御に使用する。
+
+```txt
+eventAnchor.showOnProduct  → 商品ページで表示するか
+eventAnchor.showOnStory    → ストーリーページで表示するか
 ```
 
 `position` には以下のような肩書き・職種・役職を入れる。
@@ -174,6 +185,8 @@ info.infoShopName   → Info欄で表示する店名
 }
 ```
 
+`image` は EVENT セクション本体に加えて、Hero 下の EVENT アンカー画像にも使用する。
+
 イベントを表示しない場合。
 
 ```json
@@ -199,14 +212,28 @@ info.infoShopName   → Info欄で表示する店名
 
 商品page専用の情報。
 
+`hero.text` と `main.title` の各行は、通常の文字列に加えてルビ付きオブジェクトも使用できる。
+
+```json
+{ "text": "河内晩柑", "ruby": "かわちばんかん" }
+```
+
+この仕様は `002` 固定ではなく、`productPage.json` を使う全IDで共通。
+
 ```json
 {
   "hero": {
     "image": "/db/roots/images/001/product-hero.webp",
-    "text": ["heroテキストの1行目です。", "heroテキストの2行目です。"]
+    "text": [
+      "heroテキストの1行目です。",
+      { "text": "heroテキストの2行目です。", "ruby": "るび" }
+    ]
   },
   "main": {
-    "title": "メインタイトル",
+    "title": [
+      "メインタイトル1行目",
+      { "text": "メインタイトル2行目", "ruby": "るび" }
+    ],
     "text": ["メインテキストの1段落目です。", "メインテキストの2段落目です。"]
   },
   "ecUrl": "https://example.com/",
@@ -214,9 +241,14 @@ info.infoShopName   → Info欄で表示する店名
     {
       "image": "/db/roots/images/001/product-item-01.webp",
       "title": "商品タイトル01",
-      "textWithImage": [
-        "画像が入ったバージョンのテキスト1段落目です。",
-        "画像が入ったバージョンのテキスト2段落目です。"
+      "contentBlocks": [
+        { "type": "text", "text": "画像が入ったバージョンのテキスト1段落目です。" },
+        {
+          "type": "image",
+          "src": "/db/roots/images/001/product-item-01-inline-01.webp",
+          "alt": "インライン画像の説明"
+        },
+        { "type": "text", "text": "画像が入ったバージョンのテキスト2段落目です。" }
       ]
     }
   ],
@@ -240,9 +272,9 @@ info.infoShopName   → Info欄で表示する店名
     {
       "image": "/db/roots/images/001/story-section-01.webp",
       "title": "タイトル01",
-      "textWithImage": [
-        "画像が入ったバージョンのテキスト1段落目です。",
-        "画像が入ったバージョンのテキスト2段落目です。"
+      "contentBlocks": [
+        { "type": "text", "text": "画像が入ったバージョンのテキスト1段落目です。" },
+        { "type": "text", "text": "画像が入ったバージョンのテキスト2段落目です。" }
       ]
     }
   ]
