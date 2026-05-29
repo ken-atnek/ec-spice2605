@@ -15,6 +15,7 @@
 11. `docs/rules/front-rules/checklist.md`
 12. `docs/seo/SEO_AUDIT_REQUEST_TEMPLATE.md`
 13. `docs/seo/SEO_FIX_TRACKER_TEMPLATE.md`
+14. `docs/seo/ROOTS_QUERY_SEO_SPEC.md`
 
 必須ルール（最優先）:
 

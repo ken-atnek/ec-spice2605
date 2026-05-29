@@ -105,6 +105,47 @@ function RootsContent() {
       });
   }, [folderId]);
 
+  // common.json の内容を使って、詳細ごとにメタ情報を更新
+  useEffect(() => {
+    if (!commonData) return;
+
+    const title = isStoryPage
+      ? commonData.seo?.storyTitle ||
+        `${commonData.name}のストーリー | よかモノがたり`
+      : commonData.seo?.productTitle ||
+        `${commonData.shopName}の商品紹介 | よかモノがたり`;
+
+    const description = isStoryPage
+      ? commonData.seo?.storyDescription ||
+        `${commonData.name}さんのストーリーを紹介します。`
+      : commonData.seo?.productDescription ||
+        `${commonData.shopName}の商品へのこだわりを紹介します。`;
+
+    document.title = title;
+
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', description);
+
+    const normalizedRootsId = commonData.id
+      ? commonData.id.startsWith('roots_')
+        ? commonData.id
+        : `roots_${commonData.id}`
+      : rootsId;
+    const canonicalHref = `${window.location.origin}/roots/?id=${normalizedRootsId}${isStoryPage ? '&page=story' : ''}`;
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', canonicalHref);
+  }, [commonData, isStoryPage, rootsId]);
+
   const menuItems = [
     {
       en: 'STORY',

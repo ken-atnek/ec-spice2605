@@ -56,6 +56,7 @@ export type StoryPageData = {
 };
 
 export type CommonData = {
+  id?: string;
   shopName: string;
   position: string;
   name: string;
@@ -65,6 +66,12 @@ export type CommonData = {
   productLinkImage?: string;
   commonNotice?: string;
   onlineShopUrl: string;
+  seo?: {
+    productTitle?: string;
+    productDescription?: string;
+    storyTitle?: string;
+    storyDescription?: string;
+  };
   eventAnchor?: {
     showOnProduct?: boolean;
     showOnStory?: boolean;
