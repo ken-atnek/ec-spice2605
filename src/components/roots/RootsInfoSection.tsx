@@ -3,12 +3,13 @@
  * URL: /src/components/roots/RootsInfoSection.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-02
- * Last updated: 2026-05-28
+ * Last updated: 2026-05-30
  * ======================================= */
 import styles from './RootsInfoSection.module.scss';
 import ExternalLink from '@/components/common/ExternalLink';
 
 type Props = {
+  rootsId?: string;
   infoShopName: string;
   place: string | string[];
   mapUrl: string;
@@ -18,6 +19,7 @@ type Props = {
 };
 
 export default function RootsInfoSection({
+  rootsId,
   infoShopName,
   place,
   mapUrl,
@@ -26,10 +28,16 @@ export default function RootsInfoSection({
   holiday,
 }: Props) {
   const placeLines = Array.isArray(place) ? place : [place];
-  const telLines = Array.isArray(tel) ? tel : [tel];
+  const businessHoursLines = businessHours.filter(
+    (line) => line.trim().length > 0
+  );
+  const telLines = (Array.isArray(tel) ? tel : [tel]).filter(
+    (line) => line.trim().length > 0
+  );
+  const holidayText = holiday.trim();
 
   return (
-    <section className={styles.rootsInfoSection}>
+    <section className={styles.rootsInfoSection} data-roots-id={rootsId}>
       <article>
         <div className={styles.itemH2}>
           <span>INFO.</span>
@@ -56,30 +64,36 @@ export default function RootsInfoSection({
             </div>
           </div>
           <div className={styles.itemWrap}>
-            <div>
-              <dt>営業時間</dt>
-              <dd>
-                {businessHours.map((line, index) => (
-                  <span key={`${line}-${index}`} className={styles.value}>
-                    {line}
-                  </span>
-                ))}
-              </dd>
-            </div>
-            <div>
-              <dt>電話</dt>
-              <dd>
-                {telLines.map((line, index) => (
-                  <span key={`${line}-${index}`}>{line}</span>
-                ))}
-              </dd>
-            </div>
-            <div>
-              <dt>休日</dt>
-              <dd>
-                <span>{holiday}</span>
-              </dd>
-            </div>
+            {businessHoursLines.length > 0 ? (
+              <div>
+                <dt>営業時間</dt>
+                <dd>
+                  {businessHoursLines.map((line, index) => (
+                    <span key={`${line}-${index}`} className={styles.value}>
+                      {line}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            ) : null}
+            {telLines.length > 0 ? (
+              <div>
+                <dt>電話</dt>
+                <dd>
+                  {telLines.map((line, index) => (
+                    <span key={`${line}-${index}`}>{line}</span>
+                  ))}
+                </dd>
+              </div>
+            ) : null}
+            {holidayText ? (
+              <div>
+                <dt>休日</dt>
+                <dd>
+                  <span>{holidayText}</span>
+                </dd>
+              </div>
+            ) : null}
           </div>
         </dl>
       </article>

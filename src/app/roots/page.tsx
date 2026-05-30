@@ -4,7 +4,7 @@
  * URL: /src/app/roots/page.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-04-04
- * Last updated: 2026-05-28
+ * Last updated: 2026-05-30
  * ======================================= */
 import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -66,7 +66,7 @@ function RootsContent() {
           error instanceof Error ? error.message : 'fetch failed'
         );
       });
-  }, [folderId, isStoryPage]);
+  }, [folderId]);
 
   // common.json は両ページ共通で常にfetch
   useEffect(() => {
@@ -163,6 +163,14 @@ function RootsContent() {
   const showEventAnchorOnStory = commonData?.eventAnchor?.showOnStory ?? true;
   const showEventAnchorOnProduct =
     commonData?.eventAnchor?.showOnProduct ?? false;
+  const productLeadCommonData =
+    commonData && productPage?.pageText?.length
+      ? { ...commonData, pageText: productPage.pageText }
+      : commonData;
+  const storyLeadCommonData =
+    commonData && storyPage?.pageText?.length
+      ? { ...commonData, pageText: storyPage.pageText }
+      : commonData;
 
   // --- ストーリーページ ---
   if (isStoryPage) {
@@ -181,11 +189,13 @@ function RootsContent() {
           webStoreUrl={commonData?.onlineShopUrl}
         />
         <RootsLeadSection
+          rootsId={folderId}
           heroImage={storyHeroImage}
           heroCatchCopy={storyHeroText}
-          commonData={commonData}
+          commonData={storyLeadCommonData || commonData}
           showEventAnchor={showEventAnchorOnStory}
           eventAnchorImage={eventsData?.image}
+          eventAnchorTitle={eventsData?.title}
         />
         {storyPage?.sections && storyPage.sections.length > 0 ? (
           <div id="story">
@@ -200,6 +210,7 @@ function RootsContent() {
         {infoData ? (
           <div id="info">
             <RootsInfoSection
+              rootsId={folderId}
               infoShopName={infoData.infoShopName}
               place={infoData.place}
               mapUrl={infoData.mapUrl}
@@ -256,12 +267,14 @@ function RootsContent() {
         webStoreUrl={commonData?.onlineShopUrl}
       />
       <RootsLeadSection
+        rootsId={folderId}
         heroImage={productPage.hero.image}
         heroCatchCopy={productPage.hero.text}
-        commonData={commonData}
+        commonData={productLeadCommonData || commonData}
         showWebStore
         showEventAnchor={showEventAnchorOnProduct}
         eventAnchorImage={eventsData?.image}
+        eventAnchorTitle={eventsData?.title}
       />
       <div id="craft">
         <RootsCraftSection
@@ -283,7 +296,7 @@ function RootsContent() {
           position={commonData.position}
           name={commonData.name}
           nameEn={commonData.nameEn}
-          pageText={commonData.pageText}
+          pageText={(productLeadCommonData || commonData).pageText}
           illustration={commonData.illustration}
           webStoreUrl={commonData.onlineShopUrl}
         />
@@ -291,6 +304,7 @@ function RootsContent() {
       {infoData ? (
         <div id="info">
           <RootsInfoSection
+            rootsId={folderId}
             infoShopName={infoData.infoShopName}
             place={infoData.place}
             mapUrl={infoData.mapUrl}

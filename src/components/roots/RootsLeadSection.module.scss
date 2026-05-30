@@ -180,3 +180,21 @@
         }
     }
 }
+// のむちゃん農園
+.rootsLeadSection[data-roots-id="002"] {
+    article {
+        .boxContents {
+            &::after {
+                display: none;
+            }
+            .catchCopy {
+                bottom: unset;
+                top: 20vw;
+                color: $pure-black;
+                @include up-tb {
+                    top: unset;
+                }
+            }
+        }
+    }
+}

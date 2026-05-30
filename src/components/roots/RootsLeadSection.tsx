@@ -3,7 +3,7 @@
  * URL: /src/components/roots/RootsLeadSection.tsx
  * Referenced in: /src/app/roots/page.tsx
  * Created: 2026-05-09
- * Last updated: 2026-05-28
+ * Last updated: 2026-05-30
  * ======================================= */
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,24 +31,28 @@ const renderLine = (line: RootsTextLine) => {
 };
 
 type Props = {
+  rootsId?: string;
   heroImage: string;
   heroCatchCopy: RootsTextLine[];
   commonData: CommonData;
   showWebStore?: boolean;
   showEventAnchor?: boolean;
   eventAnchorImage?: string;
+  eventAnchorTitle?: string;
 };
 
 export default function RootsLeadSection({
+  rootsId,
   heroImage,
   heroCatchCopy,
   commonData,
   showWebStore = false,
   showEventAnchor = false,
-  eventAnchorImage = '/db/roots/images/001/event.jpg',
+  eventAnchorImage,
+  eventAnchorTitle,
 }: Props) {
   return (
-    <section className={styles.rootsLeadSection}>
+    <section className={styles.rootsLeadSection} data-roots-id={rootsId}>
       <article>
         <div className={styles.rootsHero}>
           <h1 className={styles.logoCard}>
@@ -68,6 +72,7 @@ export default function RootsLeadSection({
                 width={362}
                 height={520}
                 priority
+                loading="eager"
               />
             </div>
             <p className={styles.catchCopy}>
@@ -89,7 +94,7 @@ export default function RootsLeadSection({
           {showWebStore && commonData.onlineShopUrl ? (
             <RootsWebStoreCta url={commonData.onlineShopUrl} />
           ) : null}
-          {showEventAnchor ? (
+          {showEventAnchor && eventAnchorImage && eventAnchorTitle ? (
             <Link href="#event" className={styles.anchorEvent}>
               <div className={styles.itemImage}>
                 <Image
@@ -99,7 +104,7 @@ export default function RootsLeadSection({
                   height={70}
                 />
               </div>
-              <p>江津店リニューアルイベント</p>
+              <p>{eventAnchorTitle}</p>
             </Link>
           ) : null}
         </div>

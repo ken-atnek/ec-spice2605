@@ -33,9 +33,9 @@ src/
 `generateStaticParams` は不要（IDを追加してもビルド不要）。
 
 ```ts
-const id = searchParams.get("id"); // "roots_001"
-const page = searchParams.get("page"); // "story" | null
-const folderId = id?.replace("roots_", ""); // "001"
+const id = searchParams.get('id'); // "roots_001"
+const page = searchParams.get('page'); // "story" | null
+const folderId = id?.replace('roots_', ''); // "001"
 ```
 
 ---
@@ -94,6 +94,7 @@ storyPage.json   → 人物ストーリーpage専用
 - 商品pageの `items` は4〜5個並ぶ想定のため、配列で管理する。
 - 人物ストーリーpageの `sections` は複数対応できるように配列で管理する。
 - 改行や段落が必要なテキストは、基本的に文字列配列で管理する。
+- `pageText` は `common.json` を基本値としつつ、必要なIDでは `productPage.json` / `storyPage.json` でページ別に上書きできるようにする。
 
 ---
 
@@ -112,6 +113,9 @@ storyPage.json   → 人物ストーリーpage専用
     "ページ共通テキストの1段落目です。",
     "ページ共通テキストの2段落目です。"
   ],
+  "illustration": "/db/roots/images/001/illustration.webp",
+  "productLinkImage": "/db/roots/images/001/product-link.webp",
+  "commonNotice": "共通注記テキスト（任意）",
   "onlineShopUrl": "https://example.com/",
   "eventAnchor": {
     "showOnProduct": false,
@@ -212,6 +216,9 @@ info.infoShopName   → Info欄で表示する店名
 
 商品page専用の情報。
 
+`pageText` は任意。指定した場合は商品ページのプロフィール文として `common.json` の `pageText` より優先して表示する。  
+未指定時は `common.json` の `pageText` を使用する（フォールバック）。
+
 `hero.text` と `main.title` の各行は、通常の文字列に加えてルビ付きオブジェクトも使用できる。
 
 ```json
@@ -229,6 +236,10 @@ info.infoShopName   → Info欄で表示する店名
       { "text": "heroテキストの2行目です。", "ruby": "るび" }
     ]
   },
+  "pageText": [
+    "商品ページ用のプロフィール文1段落目",
+    "商品ページ用のプロフィール文2段落目"
+  ],
   "main": {
     "title": [
       "メインタイトル1行目",
@@ -237,18 +248,25 @@ info.infoShopName   → Info欄で表示する店名
     "text": ["メインテキストの1段落目です。", "メインテキストの2段落目です。"]
   },
   "ecUrl": "https://example.com/",
+  "onlineTitle": "ECサイトへの誘導テキスト（任意）",
   "items": [
     {
       "image": "/db/roots/images/001/product-item-01.webp",
       "title": "商品タイトル01",
       "contentBlocks": [
-        { "type": "text", "text": "画像が入ったバージョンのテキスト1段落目です。" },
+        {
+          "type": "text",
+          "text": "画像が入ったバージョンのテキスト1段落目です。"
+        },
         {
           "type": "image",
           "src": "/db/roots/images/001/product-item-01-inline-01.webp",
           "alt": "インライン画像の説明"
         },
-        { "type": "text", "text": "画像が入ったバージョンのテキスト2段落目です。" }
+        {
+          "type": "text",
+          "text": "画像が入ったバージョンのテキスト2段落目です。"
+        }
       ]
     }
   ],
@@ -262,19 +280,32 @@ info.infoShopName   → Info欄で表示する店名
 
 人物ストーリーpage専用の情報。
 
+`pageText` は任意。指定した場合はストーリーページのプロフィール文として `common.json` の `pageText` より優先して表示する。  
+未指定時は `common.json` の `pageText` を使用する（フォールバック）。
+
 ```json
 {
   "hero": {
     "image": "/db/roots/images/001/story-hero.webp",
     "text": ["heroテキストの1行目です。", "heroテキストの2行目です。"]
   },
+  "pageText": [
+    "ストーリーページ用のプロフィール文1段落目。",
+    "ストーリーページ用のプロフィール文2段落目。"
+  ],
   "sections": [
     {
       "image": "/db/roots/images/001/story-section-01.webp",
       "title": "タイトル01",
       "contentBlocks": [
-        { "type": "text", "text": "画像が入ったバージョンのテキスト1段落目です。" },
-        { "type": "text", "text": "画像が入ったバージョンのテキスト2段落目です。" }
+        {
+          "type": "text",
+          "text": "画像が入ったバージョンのテキスト1段落目です。"
+        },
+        {
+          "type": "text",
+          "text": "画像が入ったバージョンのテキスト2段落目です。"
+        }
       ]
     }
   ]

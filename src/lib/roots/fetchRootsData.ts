@@ -19,6 +19,7 @@ export type ProductPageData = {
     image: string;
     text: RootsTextLine[];
   };
+  pageText?: string[];
   main: {
     title: RootsTextLine | RootsTextLine[];
     text: string[];
@@ -43,6 +44,7 @@ export type StoryPageData = {
     image?: string;
     text?: string[];
   };
+  pageText?: string[];
   sections?: {
     image: string;
     title: string | string[];
