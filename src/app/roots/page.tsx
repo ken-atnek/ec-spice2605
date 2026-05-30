@@ -296,7 +296,7 @@ function RootsContent() {
           position={commonData.position}
           name={commonData.name}
           nameEn={commonData.nameEn}
-          pageText={(productLeadCommonData || commonData).pageText}
+          pageText={storyPage?.pageText || []}
           illustration={commonData.illustration}
           webStoreUrl={commonData.onlineShopUrl}
         />
