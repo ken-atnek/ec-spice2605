@@ -15,6 +15,8 @@ type Props = {
 };
 
 export default function RootsEventSection({ image, title, text }: Props) {
+  const titleLines = title.split('\n');
+
   return (
     <section className={styles.rootsEventSection}>
       <div className={styles.itemH2}>
@@ -25,7 +27,14 @@ export default function RootsEventSection({ image, title, text }: Props) {
         <h3>Shop Event</h3>
         <Image src={image} alt={title} width={1200} height={900} />
         <div className={styles.wrapDetails}>
-          <h4 className={styles.postTitle}>{title}</h4>
+          <h4 className={styles.postTitle}>
+            {titleLines.map((line, index) => (
+              <span key={`${line}-${index}`}>
+                {line}
+                {index < titleLines.length - 1 ? <br /> : null}
+              </span>
+            ))}
+          </h4>
           <div className={styles.itemText}>
             {text.map((paragraph, index) => (
               <p key={`${paragraph}-${index}`} className={styles.text}>
