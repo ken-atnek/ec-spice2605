@@ -20,7 +20,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 0 3em;
+        gap: 0 4vw;
         @include up-tb {
             max-width: 80rem;
         }
@@ -33,19 +33,44 @@
                 width: 100%;
             }
         }
+        .linkSpice {
+            flex: 1;
+            align-self: center;
+            translate: 0 -10%;
+            @include up-tb {
+                max-width: 39rem;
+                flex: unset;
+            }
+            img {
+                width: 100%;
+            }
+        }
         nav {
             position: relative;
             font-size: inherit;
             display: flex;
             align-items: center;
             gap: 0 1em;
-            flex: 1;
+            padding-left: 1em;
+            @include up-tb {
+                padding-left: 2em;
+            }
+            h3 {
+                @include cormorant;
+                text-transform: uppercase;
+                @include sp {
+                    display: none;
+                }
+            }
             &::before {
                 content: "";
-                height: 1px;
+                position: absolute;
+                top: 50%;
+                translate: 0 -50%;
+                left: 0;
+                height: calc(100% + 1em);
+                width: 1px;
                 background-color: $pure-black;
-                flex: 1;
-                margin-right: 2em;
             }
             .snsInsta {
                 width: 7vw;
@@ -57,16 +82,16 @@
                     fill: $pure-black;
                 }
             }
-            .snsX {
-                width: 6vw;
-                @include up-tb {
-                    max-width: 2.6rem;
-                }
-                svg {
-                    aspect-ratio: 472/483;
-                    fill: $pure-black;
-                }
-            }
+            // .snsX {
+            //     width: 6vw;
+            //     @include up-tb {
+            //         max-width: 2.6rem;
+            //     }
+            //     svg {
+            //         aspect-ratio: 472/483;
+            //         fill: $pure-black;
+            //     }
+            // }
         }
     }
     .copy {

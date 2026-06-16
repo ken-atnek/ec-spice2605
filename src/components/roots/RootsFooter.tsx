@@ -20,7 +20,19 @@ export default function RootsFooter() {
             height={33}
           />
         </div>
+        <ExternalLink
+          className={styles.linkSpice}
+          href="https://spice.kumanichi.com/"
+        >
+          <Image
+            src="/images/link-spice.webp"
+            alt="熊日すぱいすへリンク画像"
+            width={390}
+            height={97}
+          ></Image>
+        </ExternalLink>
         <nav>
+          <h3>sns</h3>
           <ExternalLink
             className={styles.snsInsta}
             href="https://www.instagram.com/kumanichi_spice/"
@@ -30,12 +42,12 @@ export default function RootsFooter() {
               <use href="#svgSnsInsta" />
             </svg>
           </ExternalLink>
-          <ExternalLink className={styles.snsX} href="https://x.com/spice30">
+          {/* <ExternalLink className={styles.snsX} href="https://x.com/spice30">
             <svg role="img" aria-labelledby="svgTitleX">
               <title id="svgTitleX">エックスアイコン</title>
               <use href="#svgSnsX" />
             </svg>
-          </ExternalLink>
+          </ExternalLink> */}
         </nav>
       </article>
       <p className={styles.copy}>
