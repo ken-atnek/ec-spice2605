@@ -98,6 +98,8 @@
         display: flex;
         margin-top: 6vw;
         margin-bottom: 4vw;
+        flex-direction: column;
+        align-items: center;
         @include up-tb {
             margin-top: 5rem;
             margin-bottom: 2em;
@@ -234,20 +236,25 @@
                     }
                     .cardMeta {
                         display: flex;
-                        align-items: baseline;
+                        align-items: center;
                         gap: 0 0.8rem;
                         background-color: $main-white;
                         color: $main-blown;
-                        min-height: 5.6rem;
-                        padding: 1.2rem 5.4rem 1.2rem 1.2rem;
+                        margin-top: 2vw;
+                        @include up-tb {
+                            margin-top: 0.5rem;
+                            flex-direction: column;
+                            align-items: flex-start;
+                        }
                         .cardShop {
                             color: $main-red;
                             font-size: fs-fluid(12);
                             font-weight: 700;
                         }
                         .cardName {
-                            font-size: fs-fluid(18);
-                            letter-spacing: 0.06em;
+                            font-size: fs-fluid(16);
+                            letter-spacing: 0.02em;
+                            font-weight: 600;
                         }
                     }
 

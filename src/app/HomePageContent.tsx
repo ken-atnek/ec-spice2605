@@ -4,7 +4,7 @@
  * URL: /src/app/HomePageContent.tsx
  * Referenced in: /src/app/page.tsx
  * Created: 2026-06-08
- * Last updated: 2026-06-08
+ * Last updated: 2026-06-17
  * ======================================= */
 
 import { Fragment, useEffect, useState } from 'react';
@@ -18,6 +18,7 @@ type TopIndexItem = {
   id: string;
   topLinkType: 'product' | 'story';
   publishedAt: string;
+  cardName?: string;
 };
 
 type CommonData = {
@@ -44,6 +45,7 @@ type StoryPageData = {
 type TopCardItem = TopIndexItem & {
   shopName: string;
   name: string;
+  cardName: string;
   image: string;
   href: string;
   headlineLines: string[];
@@ -130,6 +132,7 @@ export default function HomePageContent() {
               ...item,
               shopName: commonData.shopName,
               name: commonData.name,
+              cardName: item.cardName || commonData.name,
               image,
               href,
               headlineLines,
@@ -188,12 +191,11 @@ export default function HomePageContent() {
           <p>
             「よかモノがたり」は、熊本県内のこだわり抜かれた逸品と、それを生み出す生産者、店主、職人たちの思いを紹介する“読んで買えるウェブマガジン”です。
             <br />
+            作り手の想いとともに、“熊本のいいもの”をあなたのもとへお届けします。
+            <br />
             運営するのは、熊本県内で毎週28万部を発行する地域密着のフリーペーパー「くまにちすぱいす」。長年にわたり地元を歩き、地域に眠る魅力を丁寧に取材してきた編集部が、その確かな目利きで厳選した情報をお届けします。
             <br />
             恵み豊かな自然の中で育った新鮮な熊本の農産物や、伝統の技と新しい感性から生まれる絶品スイーツなど―。なぜ、こんなにも美味しいのか。なぜ、これほど愛されるのか。普段は見ることのできない「作った人の顔」や「一品に込められた情熱、ストーリー」を丁寧に紐解きます。
-            <br />
-            <br />
-            商品や作品に込められた思いを知れば、その味わいや価値はさらに深まるもの。熊本が誇る名品の数々を、大切な方へのギフトや、自分へのご褒美としてお取り寄せいただけます。作り手の想いとともに、“熊本のいいもの”をあなたのもとへお届けします。
           </p>
         </div>
         <article className={styles.blockNews}>
@@ -239,7 +241,7 @@ export default function HomePageContent() {
                   </p>
                   <div className={styles.cardMeta}>
                     <p className={styles.cardShop}>{card.shopName}</p>
-                    <p className={styles.cardName}>{card.name}</p>
+                    <p className={styles.cardName}>{card.cardName}</p>
                   </div>
                   <span className={styles.cardArrow} aria-hidden="true">
                     →
